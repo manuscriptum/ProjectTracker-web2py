@@ -1,3 +1,0 @@
-{{extend 'layout.html'}}
-<h1>This is the default/your_projects.html template</h1>
-{{=BEAUTIFY(response._vars)}}

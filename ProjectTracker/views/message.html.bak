@@ -1,9 +1,0 @@
-<html>
-    <h1>Project Tracker</h1><br />
-    <h2>This is an email reminder from Project Tracker.</h2><br />
-    <ul>
-        <li>Click {{=A(T('here'), _href=URL('default','project', args=item.project_id, scheme=True, host=True))}} to see the project.</li>
-        <li>Click {{=A(T('here'), _href=URL('default','project', args=[item.project_id, item.id], scheme=True, host=True))}} to see the task: {{=item.body}}.</li>
-        <li>Click {{=A(T('here'), _href=URL('default','reminder', args=[item.project_id, item.id], scheme=True, host=True))}} to update the email reminders for this task.</li>
-    </ul>
-</html>

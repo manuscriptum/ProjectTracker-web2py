@@ -1,6 +1,0 @@
-# coding: utf8
-## This is an attempt to try and setup and automanager
-## and background process that starts whenever you start the app
-
-def automanage():
-    return dict(running=running)
