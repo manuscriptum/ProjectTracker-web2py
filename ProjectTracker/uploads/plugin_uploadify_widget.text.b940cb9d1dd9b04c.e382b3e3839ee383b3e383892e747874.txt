@@ -1,0 +1,89 @@
+[natsuki314@localhost ~]$ /mnt/hgfs/
+bash: /mnt/hgfs/: is a directory
+[natsuki314@localhost ~]$ ls /mnt/hgfs/
+[natsuki314@localhost ~]$ ls /mnt/hgfs/
+share
+[natsuki314@localhost ~]$ cd /mnt/hgfs/share/
+[natsuki314@localhost share]$ ls
+test.txt
+[natsuki314@localhost share]$ touch test2.txt
+[natsuki314@localhost share]$ ll
+total 0
+-rwxrwxrwx 1 root root 0 Jul 19 03:16 test2.txt
+-rwxrwxrwx 1 root root 0 Jul 19 03:15 test.txt
+[natsuki314@localhost share]$ cd /home/natsuki314/
+[natsuki314@localhost ~]$ ll
+total 8
+drwxr-xr-x 2 natsuki314 natsuki314 4096 Jul 19 02:58 Desktop
+[natsuki314@localhost ~]$ ls
+Desktop
+[natsuki314@localhost ~]$ ln -s /mnt/hgfs/share share
+[natsuki314@localhost ~]$ ls
+Desktop  share
+[natsuki314@localhost ~]$ ll
+total 12
+drwxr-xr-x 2 natsuki314 natsuki314 4096 Jul 19 02:58 Desktop
+lrwxrwxrwx 1 natsuki314 natsuki314   15 Jul 19 03:18 share -> /mnt/hgfs/share
+[natsuki314@localhost ~]$ ls
+Desktop  share
+[natsuki314@localhost ~]$ cd share/
+[natsuki314@localhost share]$ ls
+test2.txt  test.txt
+[natsuki314@localhost share]$ su root
+Password: 
+[root@localhost share]# ifconfig
+bash: ifconfig: command not found
+[root@localhost share]# /sbin/ifconfig 
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:C0:1F:3D  
+          inet addr:192.168.202.128  Bcast:192.168.202.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:2312 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1585 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2898195 (2.7 MiB)  TX bytes:103728 (101.2 KiB)
+          Interrupt:67 Base address:0x2000 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:32 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:32 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:3946 (3.8 KiB)  TX bytes:3946 (3.8 KiB)
+
+[root@localhost share]# +
+bash: +: command not found
+[root@localhost share]# 
+2011/7/27
+ 1  ifconfig
+    2  /sbin/ifconfig 
+    3  +
+    4  /etc/rc.d/init.d/yum-updatesd stop
+    5  /etc/rc.d/init.d/yum-updatesd stop
+    6  yum -y install httpd-devel mod_wsgi mod_ssl openssl-devel apr-devel
+    7  yum -y install mysql mysql-server mysql-devel mysql-client 
+    8  /etc/my.cnf
+    9  /etc/my.cnf
+   10  vi /etc/my.cnf
+   11  vim
+   12  yum -y install vim
+   13  yum -y install vim-enhanced
+   14  history
+   15  vim /etc/my.cnf 
+   16  vim /etc/my.cnf 
+   17  vim /etc/my.cnf 
+   18  cat /etc/my.cnf 
+   19  vim /etc/my.cnf 
+   20  history
+   21  [mysqld]
+   22  datadir=/var/lib/mysql
+   23  socket=/var/lib/mysql/mysql.sock
+   24  user=mysql
+   25  old_passwords=1
+   26  # symbolic-links=0
+   27  default-character-set=utf8
+   28  [mysqld_safe]
+   29  log-error=/var/log/mysqld.log
+   30  pid-file=/var/run/mysqld/mysqld.pid
+   31  default-character-set=utf8
+   32  history

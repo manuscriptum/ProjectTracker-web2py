@@ -1,0 +1,74 @@
+{{right_sidebar_enabled=True}}
+{{extend 'layout.html'}}
+<h1>Project: <span style="color:grey">{{=project.title}}</span></h1>
+<h5>Updated: <span style="color:grey">{{=prettydate(project.date_updated)}}</span></h5>
+<h5>
+    <span class="label label">Subscribe to Updates:</span><br />
+    {{=A(T('RSS Feed'), _href=URL('default','projectfeed.rss', vars={'id':project.id}), _class='btn btn-mini btn-inverse')}}
+    {{=A(T('XML Feed'), _href=URL('default','projectfeed.xml'), _class='btn btn-mini btn-inverse')}}
+    {{=A(T('JSON Feed'), _href=URL('default','projectfeed.json'), _class='btn btn-mini btn-inverse')}}
+</h5>
+<h3>
+    Collaborators:
+</h3>
+{{if len(collaborators):}}
+<span>
+    {{for collaborator in collaborators:}}
+<blockquote>
+    {{=get_user(collaborator.collaborator)}}
+</blockquote>
+{{pass}}
+</span>
+{{else:}}
+<h4>
+    {{=I('No collaborators yet')}}
+</h4>
+{{pass}}
+{{if len(items):}}
+<h3>
+    Tasks:
+</h3>
+<table class="table table-bordered">
+    <tr><th>Task</th><th>Assigned to</th><th>Assigned by</th><th>Due By</th><th>Status</th></tr>
+    {{for item in items:}}
+    {{if (item.created_by==auth.user.id) or (item.assign_to==auth.user.id):}}
+        <tr>
+           <td>{{=A(T(item.body), _href=URL('default','item', args=[project.id, item.id]))}}</td>
+           <td>{{=get_user(item.assign_to)}}</td>
+           <td>{{=get_user(item.created_by)}}</td>
+           <td>{{=prettydate(item.due)}}</td>
+           <td>{{=item.status}}</td>
+       </tr>
+    {{else:}}
+    <tr>
+           <td>{{=I('Tasks Not for your attention.')}}</td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+     </tr>
+    {{pass}}
+    {{pass}}
+</table>
+<br />
+{{else:}}
+<h4>
+    {{=I('No Tasks for this project.')}}
+</h4>
+{{pass}}
+<h5>
+    <span class="label label-inverse">Add a new Task</span>
+</h5>
+{{=form}}
+
+{{block right_sidebar}}
+<h4>Project Comments:</h4>
+{{=LOAD('default','post_projectcomment.load', ajax=True, content="Loading...", args=project.id, user_signature=True)}}
+<br />
+<hr />
+<div class="btn-group btn-group-vertical">
+{{=A(TAG.i(_class='icon-plus icon-white'), T(' Create a New Project'), _href=URL('default','new_project'), _class='btn btn-primary')}}
+{{=A(TAG.i(_class='icon-list icon-white'), T(' See Your Projects'), _href=URL('default','user_projects'), _class='btn btn-info')}}
+{{=A(TAG.i(_class='icon-folder-open icon-white'), T(' See All Projects'), _href=URL('default','projects'), _class='btn btn-warning')}}
+</div>
+{{end}}

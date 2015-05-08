@@ -1,0 +1,42 @@
+<div id="itemcomments">
+    {{if len(itemcomments):}}
+        {{for i, comment in enumerate(itemcomments):}}
+        {{if i==comments_per_page: break}}
+        <blockquote>
+            {{if comment.body:}}
+            <strong>{{=get_user(comment.author)}}</strong> said: {{=comment.body}} <small>{{=comment.date_posted}}</small>
+            {{else:}}
+            <strong>{{=get_user(comment.author)}}</strong> Added an Attachment. <small>{{=comment.date_posted}}</small>
+            {{pass}}
+            {{if comment.attachment:}}
+                {{=A(T("Download Attachment"), _href=URL('default','download', args=comment.attachment), _class='btn btn-mini btn-success', _style='margin-top: 1em;')}}
+            {{else:}}
+                {{if comment.author==auth.user.id:}}
+                    {{=A(T("Add Attachment"), _href=URL('default', 'add_attachment.html', args=[2, project_id, comment.id, item_id]), _class='btn btn-mini btn-info', _style='margin-top: 1em;')}}
+                {{pass}}
+            {{pass}}
+        </blockquote>
+        {{pass}}
+    <div class="pagination pagination-mini">
+      <ul>
+         {{if page:}}
+          <li><a href="{{=URL('default','post_itemcomment',args=[page-1])}}"><< Previous</a></li>
+          {{else:}}
+          <li class="disabled"><a href="#"><< Previous</a></li>
+          {{pass}}
+          {{if len(itemcomments)>comments_per_page:}}
+          <li>{{=A(T('Next >>'), _href=URL('default','post_itemcomment.html', args=[project_id, item_id, page+1]))}}</li>
+          {{else:}}
+          <li class="disabled"><a href="#">Next >></a></li>
+         {{pass}}
+      </ul>
+    </div>
+    {{else:}}
+        {{=I('No Comments for this task.')}}
+    {{pass}}
+</div>
+<br />
+<span class="label label-inverse">Add a new comment</span><br />
+{{=commentform}}
+<span class="label label-inverse">Add an Attachment</span><br />
+{{=A(T("Upload Attachment"), _href=URL('default', 'upload.html', args=[2, project_id, item_id]), _class='btn btn-small btn-inverse', _style='margin-top: 1em;')}}

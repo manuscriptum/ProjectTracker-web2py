@@ -1,0 +1,61 @@
+{{right_sidebar_enabled=True}}
+{{extend 'layout.html'}}
+<h1>Project: {{=A(T(project.title), _href=URL('default','project', args=project.id))}}</h1>
+<div class="well">
+    <h2><span style="color:grey;">Todo:</span> {{=MARKMIN(item.body)}}</h2>
+    <h3><span style="color:grey;">Due:</span> {{=prettydate(item.due)}}</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th><span style="color:grey;">Assigned by:</span></th>
+            <th><span style="color:grey;">Assigned to:</span></th>
+            <th><span style="color:grey;">Status:</span></th>
+            <th><span style="color:grey;">Expires:</span></th>
+        </tr>
+        <tr>
+            <th>{{=get_user(item.created_by)}}</th>
+            <th>{{=get_user(item.assign_to)}}</th>
+            <th>{{=item.status}}</th>
+            <th>{{=prettydate(item.expiration_date)}}</th>
+        </tr>
+    </table>
+    {{if item.assign_to == auth.user.id:}}
+        {{=form}}
+    {{pass}}
+    {{if item.due:}}
+    <div class="progress progress-striped active">
+        {{if item.status=='completed':}}
+        <div class="bar bar-success" style="width:{{=date_progress(item.date_created, item.due)}}%;">Due: {{=prettydate(item.due)}}</div>
+        {{elif item.status=='accepted':}}
+        <div class="bar bar-success" style="width:{{=date_progress(item.date_created, item.due)}}%;">Due: {{=prettydate(item.due)}}</div>
+        {{elif item.status=='rejected':}}
+        <div class="bar bar-danger" style="width:{{=date_progress(item.date_created, item.due)}}%;">Due: {{=prettydate(item.due)}}</div>
+        {{elif item.status=='pending':}}
+        <div class="bar bar-warning" style="width:{{=date_progress(item.date_created, item.due)}}%;">Due: {{=prettydate(item.due)}}</div>
+        {{pass}}
+    </div>
+    {{else:}}
+    <div class="progress">
+        {{if item.status=='completed':}}
+        <div class="bar bar-success" style="width:100%;">Completed</div>
+        {{elif item.status=='accepted':}}
+        <div class="bar bar-success" style="width:50%;">Accepted</div>
+        {{elif item.status=='rejected':}}
+        <div class="bar bar-danger" style="width:100%;">Rejected</div>
+        {{elif item.status=='pending':}}
+        <div class="bar bar-warning" style="width:25%;">Pending</div>
+        {{pass}}
+    </div>
+    {{pass}}
+</div>
+
+{{block right_sidebar}}
+<h4>Item Comments:</h4>
+{{=LOAD('default','post_itemcomment.load', ajax=True, content="Loading...", args=[project.id, item.id], user_signature=True)}}
+<br />
+<hr />
+<div class="btn-group btn-group-vertical">
+{{=A(TAG.i(_class='icon-plus icon-white'), T(' Create a New Project'), _href=URL('default','new_project'), _class='btn btn-primary')}}
+{{=A(TAG.i(_class='icon-list icon-white'), T(' See Your Projects'), _href=URL('default','user_projects'), _class='btn btn-info')}}
+{{=A(TAG.i(_class='icon-folder-open icon-white'), T(' See All Projects'), _href=URL('default','projects'), _class='btn btn-warning')}}
+</div>
+{{end}}

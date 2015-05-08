@@ -1,0 +1,25 @@
+aswMBR version 0.9.8.986 Copyright(c) 2011 AVAST Software
+Run date: 2011-12-04 18:13:23
+-----------------------------
+18:13:23.988    OS Version: Windows 6.0.6001 Service Pack 1
+18:13:23.988    Number of processors: 2 586 0x170A
+18:13:23.988    ComputerName: FEE-PC  UserName: Fee
+18:14:02.146    Initialize success
+18:14:08.203    Disk 0 (boot) \Device\Harddisk0\DR0 -> \Device\Ide\IdeDeviceP0T0L0-0
+18:14:08.203    Disk 0 Vendor: Hitachi_HTS543232L9A300 FB4OC40C Size: 305245MB BusType: 3
+18:14:10.247    Disk 0 MBR read successfully
+18:14:10.247    Disk 0 MBR scan
+18:14:10.262    Disk 0 unknown MBR code
+18:14:10.262    Disk 0 scanning sectors +625139712
+18:14:10.340    Disk 0 scanning C:\Windows\system32\drivers
+18:14:25.909    Service scanning
+18:14:30.277    Modules scanning
+18:14:44.676    Disk 0 trace - called modules:
+18:14:44.723    ntkrnlpa.exe CLASSPNP.SYS disk.sys acpi.sys hal.dll ataport.SYS PCIIDEX.SYS msahci.sys 
+18:14:44.723    1 nt!IofCallDriver -> \Device\Harddisk0\DR0[0x85d04ac8]
+18:14:44.723    3 CLASSPNP.SYS[8a99c745] -> nt!IofCallDriver -> [0x85b8ec10]
+18:14:44.738    5 acpi.sys[806976a0] -> nt!IofCallDriver -> \Device\Ide\IdeDeviceP0T0L0-0[0x84d7e8a8]
+18:14:44.738    Scan finished successfully
+18:15:17.202    Disk 0 MBR has been saved successfully to "C:\Users\Fee\Desktop\MBR.dat"
+18:15:17.217    The log file has been saved successfully to "C:\Users\Fee\Desktop\aswMBR.txt"
+

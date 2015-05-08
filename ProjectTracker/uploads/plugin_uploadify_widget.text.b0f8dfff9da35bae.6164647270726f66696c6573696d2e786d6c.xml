@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<phonebook total="2">
+    <item name="name" long="64" limit="null" forbid="null" type="Name" unicode="1">
+        <userdefine sum="4">
+            <element name="ctrlid">5020</element> 
+            <element name="staticid">5070</element> 
+            <element name="ctrltype">0</element> 
+            <element name="langResId">IDS_NAME</element> 
+        </userdefine>
+    </item>
+    <item name="mobile" long="64" limit="0123456789+" forbid="null" type="mobile" unicode="0">
+        <userdefine sum="4">
+            <element name="ctrlid">5021</element> 
+            <element name="staticid">5071</element> 
+            <element name="ctrltype">0</element> 
+            <element name="langResId">ID_STR_MOBILE_PHONE</element> 
+        </userdefine>
+    </item>
+</phonebook>

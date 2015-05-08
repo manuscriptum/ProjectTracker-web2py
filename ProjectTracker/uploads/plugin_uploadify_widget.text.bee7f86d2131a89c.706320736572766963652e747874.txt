@@ -1,0 +1,17 @@
+<p><span style="color: #888888; font-size: small;"><img style="float: right;" title="AG System PC Service" src="http://i.imgur.com/WdxWW.jpg" alt="AG System PC Service" width="300" height="300" />Asiguram service si reparatii pentru calculatoare desktop.</span></p>
+<p><span style="font-size: small;"><strong><span style="color: #888888;">Depanari hardware:</span></strong></span></p>
+<ul>
+<li><span style="color: #888888; font-size: small;">diagnosticare &ndash; identificarea componentei defecte.</span></li>
+<li><span style="color: #888888; font-size: small;">reparatie.</span></li>
+<li><span style="color: #888888; font-size: small;">reparatia componentei defecte de catre echipa noastra de electronisti &ndash; se ofera GARANTIE intre 3-6 luni.</span></li>
+<li><span style="color: #888888; font-size: small;">inlocuirea componentei defecte in cazul in care aceasta nu mai poate fi reparata.</span></li>
+<li><span style="color: #888888; font-size: small;">testarea &ndash; verificarea si optimizarea sistemului + verificarea stabilitatii sistemului.</span></li>
+</ul>
+<p><span style="color: #888888; font-size: small;"><strong>Depanari software:</strong></span></p>
+<ul>
+<li><span style="color: #888888; font-size: small;">instalare si configurare sisteme de operare (Windows/Linux/MacOS) si programe software/utilitare.</span></li>
+<li><span style="color: #888888; font-size: small;">devirusare &ndash; scanare si curatare sisteme infectate, devirusare si asigurarea securitatii sistemului.</span></li>
+<li><span style="color: #888888; font-size: small;">optimizare &ndash; verificarea stabilitatii si optimizarii sistemului.</span></li>
+</ul>
+<p><span style="color: #888888; font-size: small;"><br /></span></p>
+<p><span style="color: #888888; font-size: small;">Diagnosticare desktop PC |<br />Reparatii calculatoare |<br />Reparatii placi de baza, placi video, surse de alimentare |<br />Reparatii monitoare LCD |<br />Upgrade calculatoare |<br />Reparatii la nivel de componenta/SMD |</span></p>

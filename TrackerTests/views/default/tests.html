@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+
+{{if len(results):}}
+<div class="well">
+    <h4>Results from Functional Tests</h4>
+    <ol>
+    {{for result in results:}}
+        <li>{{=result}}</li>
+    {{pass}}
+    </ol>
+</div>
+{{else:}}
+<div class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oops!</strong> Looks like there was an issue with the tests.
+</div>
+{{pass}}
+
+{{=A(T('Run Tests Again'), _href=URL('default','tests'), _class='btn btn-success')}}

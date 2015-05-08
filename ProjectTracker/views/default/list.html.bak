@@ -1,0 +1,95 @@
+{{right_sidebar_enabled=True}}
+{{extend 'layout.html'}}
+<h1>List: <span style="color:grey">{{=listing.title}}</span></h1>
+<h5>Updated: <span style="color:grey">{{=listing.date_updated}}</span></h5>
+<br />
+{{if len(created_items):}}
+<h3>
+    Created Actions:
+</h3>
+<span>
+   <table class="table table-bordered">
+       <tr><th>Task</th><th>Assigned to</th><th>Due By</th><th>Status</th></tr>
+    {{for item in created_items:}}
+       <tr>
+           <td>{{=A(T(item.body), _href=URL('default','item', args=[listing.id, item.id]))}}</td>
+           <td><a href='mailto:{{=item.assign_to.email}}'>{{=item.assign_to.first_name + " " + item.assign_to.last_name}}</a></td>
+           <td>{{=item.due}}</td>
+           {{if item.completed:}}
+           <td>Completed</td>
+           {{elif item.rejected:}}
+           <td>Rejected</td>
+           {{elif item.accepted:}}
+           <td>Accepted</td>
+           {{else:}}
+           <td>Response Pending</td>
+           {{pass}}
+       </tr>
+{{pass}}
+</table>
+</span>
+<br />
+{{else:}}
+<h4>
+    {{=I('No created actions.')}}
+</h4>
+{{pass}}
+{{if len(assigned_items):}}
+<h3>
+    Assignments:
+</h3>
+<span>
+   <table class="table table-bordered">
+       <tr><th>Task</th><th>Created by</th><th>Due By</th><th>Status</th></tr>
+    {{for item in assigned_items:}}
+       <tr>
+           <td>{{=A(T(item.body), _href=URL('default','item', args=[listing.id, item.id]))}}</td>
+           <td><a href='mailto:{{=item.created_by.email}}'>{{=item.created_by.first_name + " " + item.created_by.last_name}}</a></td>
+           <td>{{=prettydate(item.due)}}</td>
+           {{if item.completed:}}
+           <td>Completed</td>
+           {{elif item.rejected:}}
+           <td>Rejected</td>
+           {{elif item.accepted:}}
+           <td>Accepted</td>
+           {{else:}}
+           <td>Response Pending</td>
+           {{pass}}
+       </tr>
+{{pass}}
+</table>
+</span>
+<br />
+{{else:}}
+<h4>
+    {{=I('No Assignments for you yet.')}}
+</h4>
+{{pass}}
+<h5>
+    <span class="label label-inverse">Add a Todo Item</span>
+</h5>
+{{=form}}
+<div class="btn-group btn-group-justified">
+{{=A(T("Your Lists"), _href=URL('default','your_lists'), _class='btn btn-info', _style='margin-top: 1em;')}}
+{{=A(T("New List"), _href=URL('default','new_list'), _class='btn btn-success', _style='margin-top: 1em;')}}
+</div>
+
+{{block right_sidebar}}
+<h3>
+    Collaborators:
+</h3>
+{{if len(users):}}
+<span>
+    {{for user in users:}}
+<blockquote>
+    <a href='mailto:{{=user.collaborator.email}}'>{{=user.collaborator.first_name + " " + user.collaborator.last_name}}</a>
+</blockquote>
+{{pass}}
+</span>
+<br />
+{{else:}}
+<h4>
+    {{=I('No collaborators yet')}}
+</h4>
+{{pass}}
+{{end}}

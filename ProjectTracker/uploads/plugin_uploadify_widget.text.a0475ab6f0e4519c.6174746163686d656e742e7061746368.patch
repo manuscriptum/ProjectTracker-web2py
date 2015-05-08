@@ -1,0 +1,39 @@
+From c432b5aa4f15be3a1743023ebe7039d80d3ce298 Mon Sep 17 00:00:00 2001
+From: Matthieu Patou <mat@matws.net>
+Date: Fri, 17 Feb 2012 09:51:56 -0800
+Subject: [PATCH] DONOTPUSH: temporary fix for ccan dependency on source3/lib/util.c
+
+Remove the need of hash_any in this code so that we don't ends up with
+symbols problems.
+---
+ source3/lib/util.c |    7 +++----
+ 1 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/source3/lib/util.c b/source3/lib/util.c
+index 2e432ab..5be15f6 100644
+--- a/source3/lib/util.c
++++ b/source3/lib/util.c
+@@ -28,7 +28,7 @@
+ #include "ctdbd_conn.h"
+ #include "../lib/util/util_pw.h"
+ #include "messages.h"
+-#include <ccan/hash/hash.h>
++//#include <ccan/hash/hash.h>
+ #include "libcli/security/security.h"
+ 
+ #ifdef HAVE_SYS_PRCTL_H
+@@ -1357,9 +1357,8 @@ const char *tab_depth(int level, int depth)
+ 
+ int str_checksum(const char *s)
+ {
+-	if (s == NULL)
+-		return 0;
+-	return hash(s, strlen(s), 0);
++       TDB_DATA key = string_tdb_data(s);
++       return tdb_jenkins_hash(&key);
+ }
+ 
+ /*****************************************************************
+-- 
+1.7.0.4
+

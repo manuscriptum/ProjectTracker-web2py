@@ -1,0 +1,15 @@
+<div id="projectcomments">
+    {{if len(projectcomments):}}
+        {{for comment in projectcomments:}}
+        <blockquote>
+            {{=comment.body}}
+            {{if comment.attachment:}}
+                {{=A(T("Download Attachment"), _href=URL('download', args=comment.attachment), _class='btn btn-mini btn-primary', _style='margin-top: 1em;')}}
+            {{pass}}
+        </blockquote>
+        {{pass}}
+    {{else:}}
+        {{=I('No Comments for this project.')}}
+    {{pass}}
+</div>
+<br />

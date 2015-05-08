@@ -1,0 +1,12 @@
+# coding: utf8
+def xml():
+    if request.vars.project and request.vars.newtask and request.vars.user and request.vars.assignto:
+        session.flash('Success')
+
+def json():
+    if request.vars.project and request.vars.newtask and request.vars.user and request.vars.assignto:
+        session.flash('Success')
+
+def xmlrpc():
+    if request.vars.project and request.vars.newtask and request.vars.user and request.vars.assignto:
+        response.flash('Success')

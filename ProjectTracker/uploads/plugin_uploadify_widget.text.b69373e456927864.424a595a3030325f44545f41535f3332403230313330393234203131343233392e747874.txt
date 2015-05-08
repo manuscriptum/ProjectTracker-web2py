@@ -1,0 +1,2130 @@
+﻿﻿BJYZ002_DT_AS_32#show version
+Cisco IOS Software, Catalyst 4500 L3 Switch Software (cat4500e-ENTSERVICESK9-M), Version 12.2(53)SG2, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Tue 16-Mar-10 04:50 by prod_rel_team
+Image text-base: 0x10000000, data-base: 0x12794974
+
+ROM: 12.2(44r)SG5
+Darkside Revision 4, Jawa Revision 18, Tatooine Revision 140, Forerunner Revision 1.78
+
+BJYZ002_DT_AS_32 uptime is 2 years, 36 weeks, 1 hour, 35 minutes
+Uptime for this control processor is 2 years, 36 weeks, 44 minutes
+System returned to ROM by power-on
+System restarted at 10:12:15 GMT Sun Jan 16 2011
+System image file is "bootflash:cat4500e-entservicesk9-mz.122-53.SG2.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C4510R-E (MPC8548) processor (revision 6) with 524288K bytes of memory.
+Processor board ID FOX1438H3RJ
+MPC8548 CPU at 1.33GHz, Supervisor 6-E
+Last reset from PowerUp
+2 Virtual Ethernet interfaces
+296 Gigabit Ethernet interfaces
+4 Ten Gigabit Ethernet interfaces
+511K bytes of non-volatile configuration memory.
+
+Configuration register is 0x2102
+
+BJYZ002_DT_AS_32#show running-config
+Building configuration...
+
+Current configuration : 21350 bytes
+!
+! Last configuration change at 09:32:16 GMT Wed Jun 26 2013 by maben
+! NVRAM config last updated at 15:13:32 GMT Mon Apr 8 2013 by maben
+!
+version 12.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime msec localtime
+service timestamps log datetime msec localtime
+service password-encryption
+service compress-config
+service counters max age 10
+!
+hostname BJYZ002_DT_AS_32
+!
+boot-start-marker
+boot system bootflash:cat4500e-entservicesk9-mz.122-53.SG2.bin
+boot-end-marker
+!
+logging buffered 16384
+no logging console
+logging event link-status global
+enable secret 5 $1$pklL$p5MjZOJRIQOnwth43Ujoo/
+!
+username cisco password 7 060506324F41
+aaa new-model
+!
+!
+aaa authentication login default group tacacs+ local
+aaa authentication login console local
+aaa authorization config-commands
+aaa authorization exec default group tacacs+ local 
+aaa authorization commands 0 default group tacacs+ local if-authenticated 
+aaa authorization commands 1 default group tacacs+ local if-authenticated 
+aaa authorization commands 15 default group tacacs+ local if-authenticated 
+aaa accounting commands 15 default start-stop group tacacs+
+!
+!
+!
+aaa session-id common
+clock timezone GMT 8
+ip subnet-zero
+no ip source-route
+no ip domain-lookup
+!
+!
+ip vrf mgmtVrf
+!
+vtp domain BJYZ
+vtp mode transparent
+!
+!
+!
+power redundancy-mode redundant
+!
+!
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree loopguard default
+spanning-tree portfast bpduguard default
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+spanning-tree uplinkfast
+spanning-tree backbonefast
+!
+redundancy
+ mode sso
+ main-cpu
+  auto-sync startup-config
+  auto-sync standard
+!
+vlan internal allocation policy ascending
+!
+vlan 400
+ name OA-PLEX
+!
+vlan 401
+ name PLEXF-V401
+!
+vlan 402
+ name PLEXF-V402
+!
+vlan 403
+ name PLEXH-V403
+!
+vlan 404
+ name PLEXH-V404
+!
+vlan 405
+ name PLEXJ-V405
+!
+vlan 406
+ name PLEXJ-V406
+!
+vlan 407
+ name PLEXD-V407
+!
+vlan 408
+ name PLEXD-V408
+!
+vlan 409
+ name PLEXQX-V409
+!
+vlan 410
+ name PLEXI1-V410
+!
+vlan 411
+ name PLEXI1-V411
+!
+vlan 412
+ name PLEXL1-V412
+!
+vlan 413
+ name PLEXL1-V413
+!
+vlan 414
+ name ZVM-V414
+!
+vlan 420
+ name serverfarm-v420
+!
+vlan 421
+ name serverfarm-v421
+!
+vlan 849
+ name Mgmt_Vlan
+!
+!
+!
+interface Port-channel1
+ description Connection to BJYZ003_DT_DS_02-VDC2
+ switchport
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+!
+interface Port-channel2
+ description Connection to BJYZ003_DT_DS_01-VDC2
+ switchport
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+!
+interface Port-channel11
+ description TO  Connection to 10.233.76.2(vip3-26)
+ switchport
+ switchport access vlan 420
+ switchport mode access
+!
+interface FastEthernet1
+ ip vrf forwarding mgmtVrf
+ no ip address
+ speed auto
+ duplex auto
+!
+interface GigabitEthernet3/1
+ description TO Connection to 10.233.76.33
+ switchport access vlan 421
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet3/2
+ description TO Connection to 10.233.76.34
+ switchport access vlan 421
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet3/3
+ description TO Connection to 10.233.76.35
+ switchport access vlan 421
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet3/4
+ description TO Connection to 10.233.76.36
+ switchport access vlan 421
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet3/5
+ description TO Connection to BIG-IP3900-EM4000 10.233.76.37
+ switchport access vlan 421
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet3/6
+!
+interface GigabitEthernet3/7
+!
+interface GigabitEthernet3/8
+!
+interface GigabitEthernet3/9
+!
+interface GigabitEthernet3/10
+!
+interface GigabitEthernet3/11
+!
+interface GigabitEthernet3/12
+!
+interface GigabitEthernet3/13
+!
+interface GigabitEthernet3/14
+!
+interface GigabitEthernet3/15
+!
+interface GigabitEthernet3/16
+!
+interface GigabitEthernet3/17
+!
+interface GigabitEthernet3/18
+!
+interface GigabitEthernet3/19
+!
+interface GigabitEthernet3/20
+!
+interface GigabitEthernet3/21
+!
+interface GigabitEthernet3/22
+!
+interface GigabitEthernet3/23
+!
+interface GigabitEthernet3/24
+!
+interface GigabitEthernet3/25
+!
+interface GigabitEthernet3/26
+!
+interface GigabitEthernet3/27
+!
+interface GigabitEthernet3/28
+!
+interface GigabitEthernet3/29
+!
+interface GigabitEthernet3/30
+!
+interface GigabitEthernet3/31
+!
+interface GigabitEthernet3/32
+!
+interface GigabitEthernet3/33
+!
+interface GigabitEthernet3/34
+!
+interface GigabitEthernet3/35
+!
+interface GigabitEthernet3/36
+!
+interface GigabitEthernet3/37
+!
+interface GigabitEthernet3/38
+!
+interface GigabitEthernet3/39
+!
+interface GigabitEthernet3/40
+!
+interface GigabitEthernet3/41
+!
+interface GigabitEthernet3/42
+!
+interface GigabitEthernet3/43
+!
+interface GigabitEthernet3/44
+!
+interface GigabitEthernet3/45
+!
+interface GigabitEthernet3/46
+!
+interface GigabitEthernet3/47
+!
+interface GigabitEthernet3/48
+!
+interface GigabitEthernet4/1
+!
+interface GigabitEthernet4/2
+!
+interface GigabitEthernet4/3
+!
+interface GigabitEthernet4/4
+!
+interface GigabitEthernet4/5
+!
+interface GigabitEthernet4/6
+!
+interface GigabitEthernet4/7
+!
+interface GigabitEthernet4/8
+!
+interface GigabitEthernet4/9
+!
+interface GigabitEthernet4/10
+!
+interface GigabitEthernet4/11
+!
+interface GigabitEthernet4/12
+!
+interface GigabitEthernet4/13
+!
+interface GigabitEthernet4/14
+!
+interface GigabitEthernet4/15
+!
+interface GigabitEthernet4/16
+!
+interface GigabitEthernet4/17
+!
+interface GigabitEthernet4/18
+!
+interface GigabitEthernet4/19
+!
+interface GigabitEthernet4/20
+!
+interface GigabitEthernet4/21
+!
+interface GigabitEthernet4/22
+!
+interface GigabitEthernet4/23
+!
+interface GigabitEthernet4/24
+!
+interface GigabitEthernet4/25
+!
+interface GigabitEthernet4/26
+!
+interface GigabitEthernet4/27
+!
+interface GigabitEthernet4/28
+!
+interface GigabitEthernet4/29
+!
+interface GigabitEthernet4/30
+!
+interface GigabitEthernet4/31
+!
+interface GigabitEthernet4/32
+!
+interface GigabitEthernet4/33
+!
+interface GigabitEthernet4/34
+!
+interface GigabitEthernet4/35
+!
+interface GigabitEthernet4/36
+!
+interface GigabitEthernet4/37
+!
+interface GigabitEthernet4/38
+!
+interface GigabitEthernet4/39
+!
+interface GigabitEthernet4/40
+!
+interface GigabitEthernet4/41
+!
+interface GigabitEthernet4/42
+!
+interface GigabitEthernet4/43
+!
+interface GigabitEthernet4/44
+!
+interface GigabitEthernet4/45
+!
+interface GigabitEthernet4/46
+!
+interface GigabitEthernet4/47
+!
+interface GigabitEthernet4/48
+!
+interface TenGigabitEthernet5/1
+!
+interface TenGigabitEthernet5/2
+!
+interface GigabitEthernet5/3
+!
+interface GigabitEthernet5/4
+!
+interface GigabitEthernet5/5
+!
+interface GigabitEthernet5/6
+!
+interface TenGigabitEthernet6/1
+!
+interface TenGigabitEthernet6/2
+!
+interface GigabitEthernet6/3
+!
+interface GigabitEthernet6/4
+!
+interface GigabitEthernet6/5
+!
+interface GigabitEthernet6/6
+!
+interface GigabitEthernet7/1
+ description Connection to AB01-200-J02-PLEXP1 & AB01-200-J02-PLEXO1
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet7/2
+ description TO Connection to 10.233.76.2(vip3-26)
+ switchport access vlan 420
+ switchport mode access
+ channel-group 11 mode on
+!
+interface GigabitEthernet7/3
+ description TO Connection to 10.233.76.2(vip3-26)
+ switchport access vlan 420
+ switchport mode access
+ channel-group 11 mode on
+!
+interface GigabitEthernet7/4
+!
+interface GigabitEthernet7/5
+!
+interface GigabitEthernet7/6
+!
+interface GigabitEthernet7/7
+!
+interface GigabitEthernet7/8
+!
+interface GigabitEthernet7/9
+ description Connection to AB02-501-PLEXH & AB02-501-PLEXJ
+ switchport trunk allowed vlan 400-413
+ switchport mode trunk
+!
+interface GigabitEthernet7/10
+!
+interface GigabitEthernet7/11
+!
+interface GigabitEthernet7/12
+!
+interface GigabitEthernet7/13
+!
+interface GigabitEthernet7/14
+!
+interface GigabitEthernet7/15
+!
+interface GigabitEthernet7/16
+!
+interface GigabitEthernet7/17
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet7/18
+!
+interface GigabitEthernet7/19
+!
+interface GigabitEthernet7/20
+!
+interface GigabitEthernet7/21
+!
+interface GigabitEthernet7/22
+!
+interface GigabitEthernet7/23
+!
+interface GigabitEthernet7/24
+!
+interface GigabitEthernet7/25
+ description Connection to AB02-200-J02-PLEXF/ZHUJI/PLEXL1
+ switchport trunk allowed vlan 400-413
+ switchport mode trunk
+!
+interface GigabitEthernet7/26
+!
+interface GigabitEthernet7/27
+!
+interface GigabitEthernet7/28
+!
+interface GigabitEthernet7/29
+!
+interface GigabitEthernet7/30
+!
+interface GigabitEthernet7/31
+!
+interface GigabitEthernet7/32
+!
+interface GigabitEthernet7/33
+!
+interface GigabitEthernet7/34
+!
+interface GigabitEthernet7/35
+!
+interface GigabitEthernet7/36
+!
+interface GigabitEthernet7/37
+!
+interface GigabitEthernet7/38
+!
+interface GigabitEthernet7/39
+!
+interface GigabitEthernet7/40
+ description Connection to BJYZ003_DT_DS_01-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 2 mode on
+!
+interface GigabitEthernet7/41
+!
+interface GigabitEthernet7/42
+!
+interface GigabitEthernet7/43
+!
+interface GigabitEthernet7/44
+!
+interface GigabitEthernet7/45
+!
+interface GigabitEthernet7/46
+!
+interface GigabitEthernet7/47
+!
+interface GigabitEthernet7/48
+ description Connection to BJYZ003_DT_DS_02-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 1 mode on
+!
+interface GigabitEthernet8/1
+ description Connection to AB02-201-J03-ZHUJI/PLEXI1
+ switchport trunk allowed vlan 400-413
+ switchport mode trunk
+!
+interface GigabitEthernet8/2
+!
+interface GigabitEthernet8/3
+!
+interface GigabitEthernet8/4
+!
+interface GigabitEthernet8/5
+!
+interface GigabitEthernet8/6
+!
+interface GigabitEthernet8/7
+!
+interface GigabitEthernet8/8
+!
+interface GigabitEthernet8/9
+ description Connection to AB02-181-PLEXD 
+ switchport trunk allowed vlan 400-410,414
+ switchport mode trunk
+!
+interface GigabitEthernet8/10
+!
+interface GigabitEthernet8/11
+!
+interface GigabitEthernet8/12
+!
+interface GigabitEthernet8/13
+!
+interface GigabitEthernet8/14
+!
+interface GigabitEthernet8/15
+!
+interface GigabitEthernet8/16
+!
+interface GigabitEthernet8/17
+ description Connection to AB04-281-J02-PLEXO1 & AB04-281-J02-PLEXG1
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet8/18
+!
+interface GigabitEthernet8/19
+!
+interface GigabitEthernet8/20
+!
+interface GigabitEthernet8/21
+!
+interface GigabitEthernet8/22
+!
+interface GigabitEthernet8/23
+!
+interface GigabitEthernet8/24
+!
+interface GigabitEthernet8/25
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet8/26
+!
+interface GigabitEthernet8/27
+!
+interface GigabitEthernet8/28
+!
+interface GigabitEthernet8/29
+!
+interface GigabitEthernet8/30
+!
+interface GigabitEthernet8/31
+!
+interface GigabitEthernet8/32
+!
+interface GigabitEthernet8/33
+!
+interface GigabitEthernet8/34
+!
+interface GigabitEthernet8/35
+!
+interface GigabitEthernet8/36
+!
+interface GigabitEthernet8/37
+!
+interface GigabitEthernet8/38
+!
+interface GigabitEthernet8/39
+!
+interface GigabitEthernet8/40
+ description Connection to BJYZ003_DT_DS_01-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 2 mode on
+!
+interface GigabitEthernet8/41
+!
+interface GigabitEthernet8/42
+!
+interface GigabitEthernet8/43
+!
+interface GigabitEthernet8/44
+!
+interface GigabitEthernet8/45
+!
+interface GigabitEthernet8/46
+!
+interface GigabitEthernet8/47
+!
+interface GigabitEthernet8/48
+ description Connection to BJYZ003_DT_DS_02-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 1 mode on
+!
+interface GigabitEthernet9/1
+ description Connection to AB05-200-J02-ZHUJI
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet9/2
+!
+interface GigabitEthernet9/3
+!
+interface GigabitEthernet9/4
+!
+interface GigabitEthernet9/5
+!
+interface GigabitEthernet9/6
+!
+interface GigabitEthernet9/7
+!
+interface GigabitEthernet9/8
+!
+interface GigabitEthernet9/9
+ description Connection to AB05-201-J03-PLEXH & AB05-200-J01-PLEXI1
+ switchport trunk allowed vlan 400-413
+ switchport mode trunk
+!
+interface GigabitEthernet9/10
+!
+interface GigabitEthernet9/11
+!
+interface GigabitEthernet9/12
+!
+interface GigabitEthernet9/13
+!
+interface GigabitEthernet9/14
+!
+interface GigabitEthernet9/15
+!
+interface GigabitEthernet9/16
+!
+interface GigabitEthernet9/17
+ description Connection to AB05-181-PLEXD & AB05-181-PLEXF
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet9/18
+!
+interface GigabitEthernet9/19
+!
+interface GigabitEthernet9/20
+!
+interface GigabitEthernet9/21
+!
+interface GigabitEthernet9/22
+!
+interface GigabitEthernet9/23
+!
+interface GigabitEthernet9/24
+!
+interface GigabitEthernet9/25
+ description Connection to AB05-501-PLEXJ & AB05-500-PLEXL1
+ switchport trunk allowed vlan 400-413
+ switchport mode trunk
+!
+interface GigabitEthernet9/26
+!
+interface GigabitEthernet9/27
+!
+interface GigabitEthernet9/28
+!
+interface GigabitEthernet9/29
+!
+interface GigabitEthernet9/30
+!
+interface GigabitEthernet9/31
+!
+interface GigabitEthernet9/32
+!
+interface GigabitEthernet9/33
+!
+interface GigabitEthernet9/34
+!
+interface GigabitEthernet9/35
+!
+interface GigabitEthernet9/36
+!
+interface GigabitEthernet9/37
+!
+interface GigabitEthernet9/38
+!
+interface GigabitEthernet9/39
+!
+interface GigabitEthernet9/40
+ description Connection to BJYZ003_DT_DS_01-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 2 mode on
+!
+interface GigabitEthernet9/41
+!
+interface GigabitEthernet9/42
+!
+interface GigabitEthernet9/43
+!
+interface GigabitEthernet9/44
+!
+interface GigabitEthernet9/45
+!
+interface GigabitEthernet9/46
+!
+interface GigabitEthernet9/47
+!
+interface GigabitEthernet9/48
+ description Connection to BJYZ003_DT_DS_02-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 1 mode on
+!
+interface GigabitEthernet10/1
+!
+interface GigabitEthernet10/2
+!
+interface GigabitEthernet10/3
+!
+interface GigabitEthernet10/4
+!
+interface GigabitEthernet10/5
+!
+interface GigabitEthernet10/6
+!
+interface GigabitEthernet10/7
+!
+interface GigabitEthernet10/8
+!
+interface GigabitEthernet10/9
+ description Connection to AB07-191-J02-PLEXQX
+ switchport trunk allowed vlan 400-410
+ switchport mode trunk
+!
+interface GigabitEthernet10/10
+!
+interface GigabitEthernet10/11
+!
+interface GigabitEthernet10/12
+!
+interface GigabitEthernet10/13
+!
+interface GigabitEthernet10/14
+!
+interface GigabitEthernet10/15
+!
+interface GigabitEthernet10/16
+!
+interface GigabitEthernet10/17
+!
+interface GigabitEthernet10/18
+!
+interface GigabitEthernet10/19
+!
+interface GigabitEthernet10/20
+!
+interface GigabitEthernet10/21
+!
+interface GigabitEthernet10/22
+!
+interface GigabitEthernet10/23
+!
+interface GigabitEthernet10/24
+!
+interface GigabitEthernet10/25
+!
+interface GigabitEthernet10/26
+!
+interface GigabitEthernet10/27
+!
+interface GigabitEthernet10/28
+!
+interface GigabitEthernet10/29
+!
+interface GigabitEthernet10/30
+!
+interface GigabitEthernet10/31
+!
+interface GigabitEthernet10/32
+!
+interface GigabitEthernet10/33
+!
+interface GigabitEthernet10/34
+!
+interface GigabitEthernet10/35
+!
+interface GigabitEthernet10/36
+!
+interface GigabitEthernet10/37
+!
+interface GigabitEthernet10/38
+!
+interface GigabitEthernet10/39
+!
+interface GigabitEthernet10/40
+ description Connection to BJYZ003_DT_DS_01-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 2 mode on
+!
+interface GigabitEthernet10/41
+!
+interface GigabitEthernet10/42
+!
+interface GigabitEthernet10/43
+!
+interface GigabitEthernet10/44
+!
+interface GigabitEthernet10/45
+!
+interface GigabitEthernet10/46
+!
+interface GigabitEthernet10/47
+!
+interface GigabitEthernet10/48
+ description Connection to BJYZ003_DT_DS_02-VDC2
+ switchport trunk allowed vlan 400-414,420,421,849
+ switchport mode trunk
+ udld port
+ channel-group 1 mode on
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan849
+ description Mgmt_Vlan
+ ip address 10.229.253.162 255.255.255.224
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+!
+ip route 0.0.0.0 0.0.0.0 10.229.253.190
+no ip http server
+no ip http secure-server
+!
+ip tacacs source-interface Vlan849
+!
+!
+logging history informational
+logging source-interface Vlan849
+logging 10.229.72.33
+logging 10.229.72.34
+logging 10.229.74.1
+logging 10.229.74.2
+logging 10.229.72.57
+logging 10.229.72.58
+logging 10.229.72.48
+logging 10.232.61.10
+logging 10.229.252.25
+access-list 98 permit 10.229.72.32 0.0.0.31
+access-list 98 permit 10.229.74.0 0.0.0.31
+access-list 98 permit 10.229.252.24 0.0.0.7
+access-list 198 permit tcp 172.29.0.0 0.0.255.255 any
+access-list 198 permit tcp 5.0.0.0 0.0.0.255 any
+access-list 198 permit tcp 10.229.72.32 0.0.0.31 any
+access-list 198 permit tcp 10.229.74.0 0.0.0.31 any
+access-list 198 permit tcp 10.229.62.240 0.0.0.7 any
+access-list 198 permit tcp 10.232.66.0 0.0.0.255 any
+access-list 198 permit tcp 10.229.252.24 0.0.0.7 any
+access-list 198 deny   ip any any log
+!
+!
+snmp-server engineID local 800000090300588D094A2185
+snmp-server community ZHNM RO 98
+snmp-server trap-source Vlan849
+snmp-server tftp-server-list 98
+snmp-server location BJYZ
+snmp-server contact RenFei renfei@abchina.com
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface-old
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps ether-oam
+snmp-server enable traps flash insertion removal
+snmp-server enable traps power-ethernet group 3
+snmp-server enable traps power-ethernet group 4
+snmp-server enable traps power-ethernet police
+snmp-server enable traps cpu threshold
+snmp-server enable traps rep
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail
+snmp-server enable traps port-security
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps ethernet cfm alarm
+snmp-server enable traps ethernet evc status create delete
+snmp-server enable traps energywise
+snmp-server enable traps rtr
+snmp-server enable traps bgp
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps msdp
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps rf
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+snmp-server enable traps mac-notification change move threshold
+snmp-server host 10.229.74.10 ZHNM 
+snmp-server host 10.232.61.10 ZHNM 
+snmp-server host 5.0.0.72 ZHNM 
+snmp-server file-transfer access-group 98 protocol tftp
+snmp ifmib ifindex persist
+tacacs-server host 5.0.0.200
+tacacs-server host 5.0.0.201
+tacacs-server directed-request
+tacacs-server key 7 030752180500
+banner login ^CCC
+
+             ACCESS IS RESTRICTED TO AUTHORISED PERSONNEL ONLY
+
+             This system is equipped with a security system
+             intended to prevent and record unauthorized
+             access attempts. Unauthorised access or use
+             shall render the user liable to criminal and/or
+             civil prosecution.^C
+privilege exec level 6 traceroute
+privilege exec level 6 ping ip
+privilege exec level 6 ping
+privilege exec level 6 show startup-config
+privilege exec level 6 show
+!
+line con 0
+ exec-timeout 5 0
+ logging synchronous
+ login authentication console
+ stopbits 1
+line vty 0 4
+ access-class 198 in
+ exec-timeout 5 0
+ password 7 110A1016141D
+ logging synchronous
+ transport preferred telnet
+ transport input telnet
+ transport output telnet
+!
+ntp authenticate
+ntp trusted-key 1234
+ntp clock-period 17181771
+ntp source Vlan849
+ntp update-calendar
+ntp server 172.29.175.253 prefer
+ntp server 172.29.175.251
+end
+
+BJYZ002_DT_AS_32#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is 10.229.253.190 to network 0.0.0.0
+
+     10.0.0.0/27 is subnetted, 1 subnets
+C       10.229.253.160 is directly connected, Vlan849
+S*   0.0.0.0/0 [1/0] via 10.229.253.190
+BJYZ002_DT_AS_32#show ip route vrf A
+% IP routing table A does not exist
+BJYZ002_DT_AS_32#show ip route vrf B
+% IP routing table B does not exist
+BJYZ002_DT_AS_32#show cdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+BJYZ003_DT_DS_02-VDC2(JAF1538BKST)
+                 Gig 10/40         141            R S I C N7K-C7010 Eth 10/4
+BJYZ003_DT_DS_02-VDC2(JAF1538BKST)
+                 Gig 9/40          141            R S I C N7K-C7010 Eth 10/3
+BJYZ003_DT_DS_02-VDC2(JAF1538BKST)
+                 Gig 8/40          129            R S I C N7K-C7010 Eth 1/4
+BJYZ003_DT_DS_02-VDC2(JAF1538BKST)
+                 Gig 7/40          176            R S I C N7K-C7010 Eth 1/3
+BJYZ003_DT_DS_01-VDC2(JAF1538BKPA)
+                 Gig 7/48          134            R S I C N7K-C7010 Eth 1/3
+BJYZ003_DT_DS_01-VDC2(JAF1538BKPA)
+                 Gig 10/48         134            R S I C N7K-C7010 Eth 10/4
+BJYZ003_DT_DS_01-VDC2(JAF1538BKPA)
+                 Gig 9/48          134            R S I C N7K-C7010 Eth 10/3
+BJYZ003_DT_DS_01-VDC2(JAF1538BKPA)
+                 Gig 8/48          134            R S I C N7K-C7010 Eth 1/4
+BJYZ002_DT_AS_32#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES NVRAM  up                    up      
+Vlan849                10.229.253.162  YES manual up                    up      
+FastEthernet1          unassigned      YES NVRAM  down                  down    
+GigabitEthernet3/1     unassigned      YES unset  up                    up      
+GigabitEthernet3/2     unassigned      YES unset  down                  down    
+GigabitEthernet3/3     unassigned      YES unset  up                    up      
+GigabitEthernet3/4     unassigned      YES unset  down                  down    
+GigabitEthernet3/5     unassigned      YES unset  up                    up      
+GigabitEthernet3/6     unassigned      YES unset  down                  down    
+GigabitEthernet3/7     unassigned      YES unset  down                  down    
+GigabitEthernet3/8     unassigned      YES unset  down                  down    
+GigabitEthernet3/9     unassigned      YES unset  down                  down    
+GigabitEthernet3/10    unassigned      YES unset  down                  down    
+GigabitEthernet3/11    unassigned      YES unset  down                  down    
+GigabitEthernet3/12    unassigned      YES unset  down                  down    
+GigabitEthernet3/13    unassigned      YES unset  down                  down    
+GigabitEthernet3/14    unassigned      YES unset  down                  down    
+GigabitEthernet3/15    unassigned      YES unset  down                  down    
+GigabitEthernet3/16    unassigned      YES unset  down                  down    
+GigabitEthernet3/17    unassigned      YES unset  down                  down    
+GigabitEthernet3/18    unassigned      YES unset  down                  down    
+GigabitEthernet3/19    unassigned      YES unset  down                  down    
+GigabitEthernet3/20    unassigned      YES unset  down                  down    
+GigabitEthernet3/21    unassigned      YES unset  down                  down    
+GigabitEthernet3/22    unassigned      YES unset  down                  down    
+GigabitEthernet3/23    unassigned      YES unset  down                  down    
+GigabitEthernet3/24    unassigned      YES unset  down                  down    
+GigabitEthernet3/25    unassigned      YES unset  down                  down    
+GigabitEthernet3/26    unassigned      YES unset  down                  down    
+GigabitEthernet3/27    unassigned      YES unset  down                  down    
+GigabitEthernet3/28    unassigned      YES unset  down                  down    
+GigabitEthernet3/29    unassigned      YES unset  down                  down    
+GigabitEthernet3/30    unassigned      YES unset  down                  down    
+GigabitEthernet3/31    unassigned      YES unset  down                  down    
+GigabitEthernet3/32    unassigned      YES unset  down                  down    
+GigabitEthernet3/33    unassigned      YES unset  down                  down    
+GigabitEthernet3/34    unassigned      YES unset  down                  down    
+GigabitEthernet3/35    unassigned      YES unset  down                  down    
+GigabitEthernet3/36    unassigned      YES unset  down                  down    
+GigabitEthernet3/37    unassigned      YES unset  down                  down    
+GigabitEthernet3/38    unassigned      YES unset  down                  down    
+GigabitEthernet3/39    unassigned      YES unset  down                  down    
+GigabitEthernet3/40    unassigned      YES unset  down                  down    
+GigabitEthernet3/41    unassigned      YES unset  down                  down    
+GigabitEthernet3/42    unassigned      YES unset  down                  down    
+GigabitEthernet3/43    unassigned      YES unset  down                  down    
+GigabitEthernet3/44    unassigned      YES unset  down                  down    
+GigabitEthernet3/45    unassigned      YES unset  down                  down    
+GigabitEthernet3/46    unassigned      YES unset  down                  down    
+GigabitEthernet3/47    unassigned      YES unset  down                  down    
+GigabitEthernet3/48    unassigned      YES unset  down                  down    
+GigabitEthernet4/1     unassigned      YES unset  down                  down    
+GigabitEthernet4/2     unassigned      YES unset  down                  down    
+GigabitEthernet4/3     unassigned      YES unset  down                  down    
+GigabitEthernet4/4     unassigned      YES unset  down                  down    
+GigabitEthernet4/5     unassigned      YES unset  down                  down    
+GigabitEthernet4/6     unassigned      YES unset  down                  down    
+GigabitEthernet4/7     unassigned      YES unset  down                  down    
+GigabitEthernet4/8     unassigned      YES unset  down                  down    
+GigabitEthernet4/9     unassigned      YES unset  down                  down    
+GigabitEthernet4/10    unassigned      YES unset  down                  down    
+GigabitEthernet4/11    unassigned      YES unset  down                  down    
+GigabitEthernet4/12    unassigned      YES unset  down                  down    
+GigabitEthernet4/13    unassigned      YES unset  down                  down    
+GigabitEthernet4/14    unassigned      YES unset  down                  down    
+GigabitEthernet4/15    unassigned      YES unset  down                  down    
+GigabitEthernet4/16    unassigned      YES unset  down                  down    
+GigabitEthernet4/17    unassigned      YES unset  down                  down    
+GigabitEthernet4/18    unassigned      YES unset  down                  down    
+GigabitEthernet4/19    unassigned      YES unset  down                  down    
+GigabitEthernet4/20    unassigned      YES unset  down                  down    
+GigabitEthernet4/21    unassigned      YES unset  down                  down    
+GigabitEthernet4/22    unassigned      YES unset  down                  down    
+GigabitEthernet4/23    unassigned      YES unset  down                  down    
+GigabitEthernet4/24    unassigned      YES unset  down                  down    
+GigabitEthernet4/25    unassigned      YES unset  down                  down    
+GigabitEthernet4/26    unassigned      YES unset  down                  down    
+GigabitEthernet4/27    unassigned      YES unset  down                  down    
+GigabitEthernet4/28    unassigned      YES unset  down                  down    
+GigabitEthernet4/29    unassigned      YES unset  down                  down    
+GigabitEthernet4/30    unassigned      YES unset  down                  down    
+GigabitEthernet4/31    unassigned      YES unset  down                  down    
+GigabitEthernet4/32    unassigned      YES unset  down                  down    
+GigabitEthernet4/33    unassigned      YES unset  down                  down    
+GigabitEthernet4/34    unassigned      YES unset  down                  down    
+GigabitEthernet4/35    unassigned      YES unset  down                  down    
+GigabitEthernet4/36    unassigned      YES unset  down                  down    
+GigabitEthernet4/37    unassigned      YES unset  down                  down    
+GigabitEthernet4/38    unassigned      YES unset  down                  down    
+GigabitEthernet4/39    unassigned      YES unset  down                  down    
+GigabitEthernet4/40    unassigned      YES unset  down                  down    
+GigabitEthernet4/41    unassigned      YES unset  down                  down    
+GigabitEthernet4/42    unassigned      YES unset  down                  down    
+GigabitEthernet4/43    unassigned      YES unset  down                  down    
+GigabitEthernet4/44    unassigned      YES unset  down                  down    
+GigabitEthernet4/45    unassigned      YES unset  down                  down    
+GigabitEthernet4/46    unassigned      YES unset  down                  down    
+GigabitEthernet4/47    unassigned      YES unset  down                  down    
+GigabitEthernet4/48    unassigned      YES unset  down                  down    
+TenGigabitEthernet5/1  unassigned      YES unset  down                  down    
+TenGigabitEthernet5/2  unassigned      YES unset  down                  down    
+GigabitEthernet5/3     unassigned      YES unset  down                  down    
+GigabitEthernet5/4     unassigned      YES unset  down                  down    
+GigabitEthernet5/5     unassigned      YES unset  down                  down    
+GigabitEthernet5/6     unassigned      YES unset  down                  down    
+TenGigabitEthernet6/1  unassigned      YES unset  down                  down    
+TenGigabitEthernet6/2  unassigned      YES unset  down                  down    
+GigabitEthernet6/3     unassigned      YES unset  down                  down    
+GigabitEthernet6/4     unassigned      YES unset  down                  down    
+GigabitEthernet6/5     unassigned      YES unset  down                  down    
+GigabitEthernet6/6     unassigned      YES unset  down                  down    
+GigabitEthernet7/1     unassigned      YES unset  up                    up      
+GigabitEthernet7/2     unassigned      YES unset  up                    up      
+GigabitEthernet7/3     unassigned      YES unset  up                    up      
+GigabitEthernet7/4     unassigned      YES unset  up                    up      
+GigabitEthernet7/5     unassigned      YES unset  down                  down    
+GigabitEthernet7/6     unassigned      YES unset  down                  down    
+GigabitEthernet7/7     unassigned      YES unset  down                  down    
+GigabitEthernet7/8     unassigned      YES unset  down                  down    
+GigabitEthernet7/9     unassigned      YES unset  up                    up      
+GigabitEthernet7/10    unassigned      YES unset  down                  down    
+GigabitEthernet7/11    unassigned      YES unset  down                  down    
+GigabitEthernet7/12    unassigned      YES unset  down                  down    
+GigabitEthernet7/13    unassigned      YES unset  down                  down    
+GigabitEthernet7/14    unassigned      YES unset  down                  down    
+GigabitEthernet7/15    unassigned      YES unset  down                  down    
+GigabitEthernet7/16    unassigned      YES unset  down                  down    
+GigabitEthernet7/17    unassigned      YES unset  up                    up      
+GigabitEthernet7/18    unassigned      YES unset  down                  down    
+GigabitEthernet7/19    unassigned      YES unset  down                  down    
+GigabitEthernet7/20    unassigned      YES unset  down                  down    
+GigabitEthernet7/21    unassigned      YES unset  down                  down    
+GigabitEthernet7/22    unassigned      YES unset  down                  down    
+GigabitEthernet7/23    unassigned      YES unset  down                  down    
+GigabitEthernet7/24    unassigned      YES unset  down                  down    
+GigabitEthernet7/25    unassigned      YES unset  up                    up      
+GigabitEthernet7/26    unassigned      YES unset  down                  down    
+GigabitEthernet7/27    unassigned      YES unset  down                  down    
+GigabitEthernet7/28    unassigned      YES unset  down                  down    
+GigabitEthernet7/29    unassigned      YES unset  down                  down    
+GigabitEthernet7/30    unassigned      YES unset  down                  down    
+GigabitEthernet7/31    unassigned      YES unset  down                  down    
+GigabitEthernet7/32    unassigned      YES unset  down                  down    
+GigabitEthernet7/33    unassigned      YES unset  down                  down    
+GigabitEthernet7/34    unassigned      YES unset  down                  down    
+GigabitEthernet7/35    unassigned      YES unset  down                  down    
+GigabitEthernet7/36    unassigned      YES unset  down                  down    
+GigabitEthernet7/37    unassigned      YES unset  down                  down    
+GigabitEthernet7/38    unassigned      YES unset  down                  down    
+GigabitEthernet7/39    unassigned      YES unset  down                  down    
+GigabitEthernet7/40    unassigned      YES unset  up                    up      
+GigabitEthernet7/41    unassigned      YES unset  down                  down    
+GigabitEthernet7/42    unassigned      YES unset  down                  down    
+GigabitEthernet7/43    unassigned      YES unset  down                  down    
+GigabitEthernet7/44    unassigned      YES unset  down                  down    
+GigabitEthernet7/45    unassigned      YES unset  down                  down    
+GigabitEthernet7/46    unassigned      YES unset  down                  down    
+GigabitEthernet7/47    unassigned      YES unset  down                  down    
+GigabitEthernet7/48    unassigned      YES unset  up                    up      
+GigabitEthernet8/1     unassigned      YES unset  up                    up      
+GigabitEthernet8/2     unassigned      YES unset  down                  down    
+GigabitEthernet8/3     unassigned      YES unset  down                  down    
+GigabitEthernet8/4     unassigned      YES unset  down                  down    
+GigabitEthernet8/5     unassigned      YES unset  down                  down    
+GigabitEthernet8/6     unassigned      YES unset  down                  down    
+GigabitEthernet8/7     unassigned      YES unset  down                  down    
+GigabitEthernet8/8     unassigned      YES unset  down                  down    
+GigabitEthernet8/9     unassigned      YES unset  up                    up      
+GigabitEthernet8/10    unassigned      YES unset  down                  down    
+GigabitEthernet8/11    unassigned      YES unset  down                  down    
+GigabitEthernet8/12    unassigned      YES unset  down                  down    
+GigabitEthernet8/13    unassigned      YES unset  down                  down    
+GigabitEthernet8/14    unassigned      YES unset  down                  down    
+GigabitEthernet8/15    unassigned      YES unset  down                  down    
+GigabitEthernet8/16    unassigned      YES unset  down                  down    
+GigabitEthernet8/17    unassigned      YES unset  up                    up      
+GigabitEthernet8/18    unassigned      YES unset  down                  down    
+GigabitEthernet8/19    unassigned      YES unset  down                  down    
+GigabitEthernet8/20    unassigned      YES unset  down                  down    
+GigabitEthernet8/21    unassigned      YES unset  down                  down    
+GigabitEthernet8/22    unassigned      YES unset  down                  down    
+GigabitEthernet8/23    unassigned      YES unset  down                  down    
+GigabitEthernet8/24    unassigned      YES unset  down                  down    
+GigabitEthernet8/25    unassigned      YES unset  up                    up      
+GigabitEthernet8/26    unassigned      YES unset  down                  down    
+GigabitEthernet8/27    unassigned      YES unset  down                  down    
+GigabitEthernet8/28    unassigned      YES unset  down                  down    
+GigabitEthernet8/29    unassigned      YES unset  down                  down    
+GigabitEthernet8/30    unassigned      YES unset  down                  down    
+GigabitEthernet8/31    unassigned      YES unset  down                  down    
+GigabitEthernet8/32    unassigned      YES unset  down                  down    
+GigabitEthernet8/33    unassigned      YES unset  down                  down    
+GigabitEthernet8/34    unassigned      YES unset  down                  down    
+GigabitEthernet8/35    unassigned      YES unset  down                  down    
+GigabitEthernet8/36    unassigned      YES unset  down                  down    
+GigabitEthernet8/37    unassigned      YES unset  down                  down    
+GigabitEthernet8/38    unassigned      YES unset  down                  down    
+GigabitEthernet8/39    unassigned      YES unset  down                  down    
+GigabitEthernet8/40    unassigned      YES unset  up                    up      
+GigabitEthernet8/41    unassigned      YES unset  down                  down    
+GigabitEthernet8/42    unassigned      YES unset  down                  down    
+GigabitEthernet8/43    unassigned      YES unset  down                  down    
+GigabitEthernet8/44    unassigned      YES unset  down                  down    
+GigabitEthernet8/45    unassigned      YES unset  down                  down    
+GigabitEthernet8/46    unassigned      YES unset  down                  down    
+GigabitEthernet8/47    unassigned      YES unset  down                  down    
+GigabitEthernet8/48    unassigned      YES unset  up                    up      
+GigabitEthernet9/1     unassigned      YES unset  up                    up      
+GigabitEthernet9/2     unassigned      YES unset  down                  down    
+GigabitEthernet9/3     unassigned      YES unset  down                  down    
+GigabitEthernet9/4     unassigned      YES unset  down                  down    
+GigabitEthernet9/5     unassigned      YES unset  down                  down    
+GigabitEthernet9/6     unassigned      YES unset  down                  down    
+GigabitEthernet9/7     unassigned      YES unset  down                  down    
+GigabitEthernet9/8     unassigned      YES unset  down                  down    
+GigabitEthernet9/9     unassigned      YES unset  up                    up      
+GigabitEthernet9/10    unassigned      YES unset  down                  down    
+GigabitEthernet9/11    unassigned      YES unset  down                  down    
+GigabitEthernet9/12    unassigned      YES unset  down                  down    
+GigabitEthernet9/13    unassigned      YES unset  down                  down    
+GigabitEthernet9/14    unassigned      YES unset  down                  down    
+GigabitEthernet9/15    unassigned      YES unset  down                  down    
+GigabitEthernet9/16    unassigned      YES unset  down                  down    
+GigabitEthernet9/17    unassigned      YES unset  up                    up      
+GigabitEthernet9/18    unassigned      YES unset  down                  down    
+GigabitEthernet9/19    unassigned      YES unset  down                  down    
+GigabitEthernet9/20    unassigned      YES unset  down                  down    
+GigabitEthernet9/21    unassigned      YES unset  down                  down    
+GigabitEthernet9/22    unassigned      YES unset  down                  down    
+GigabitEthernet9/23    unassigned      YES unset  down                  down    
+GigabitEthernet9/24    unassigned      YES unset  down                  down    
+GigabitEthernet9/25    unassigned      YES unset  up                    up      
+GigabitEthernet9/26    unassigned      YES unset  down                  down    
+GigabitEthernet9/27    unassigned      YES unset  down                  down    
+GigabitEthernet9/28    unassigned      YES unset  down                  down    
+GigabitEthernet9/29    unassigned      YES unset  down                  down    
+GigabitEthernet9/30    unassigned      YES unset  down                  down    
+GigabitEthernet9/31    unassigned      YES unset  down                  down    
+GigabitEthernet9/32    unassigned      YES unset  down                  down    
+GigabitEthernet9/33    unassigned      YES unset  down                  down    
+GigabitEthernet9/34    unassigned      YES unset  down                  down    
+GigabitEthernet9/35    unassigned      YES unset  down                  down    
+GigabitEthernet9/36    unassigned      YES unset  down                  down    
+GigabitEthernet9/37    unassigned      YES unset  down                  down    
+GigabitEthernet9/38    unassigned      YES unset  down                  down    
+GigabitEthernet9/39    unassigned      YES unset  down                  down    
+GigabitEthernet9/40    unassigned      YES unset  up                    up      
+GigabitEthernet9/41    unassigned      YES unset  down                  down    
+GigabitEthernet9/42    unassigned      YES unset  down                  down    
+GigabitEthernet9/43    unassigned      YES unset  down                  down    
+GigabitEthernet9/44    unassigned      YES unset  down                  down    
+GigabitEthernet9/45    unassigned      YES unset  down                  down    
+GigabitEthernet9/46    unassigned      YES unset  down                  down    
+GigabitEthernet9/47    unassigned      YES unset  down                  down    
+GigabitEthernet9/48    unassigned      YES unset  up                    up      
+GigabitEthernet10/1    unassigned      YES unset  up                    up      
+GigabitEthernet10/2    unassigned      YES unset  down                  down    
+GigabitEthernet10/3    unassigned      YES unset  down                  down    
+GigabitEthernet10/4    unassigned      YES unset  down                  down    
+GigabitEthernet10/5    unassigned      YES unset  down                  down    
+GigabitEthernet10/6    unassigned      YES unset  down                  down    
+GigabitEthernet10/7    unassigned      YES unset  down                  down    
+GigabitEthernet10/8    unassigned      YES unset  down                  down    
+GigabitEthernet10/9    unassigned      YES unset  up                    up      
+GigabitEthernet10/10   unassigned      YES unset  down                  down    
+GigabitEthernet10/11   unassigned      YES unset  down                  down    
+GigabitEthernet10/12   unassigned      YES unset  down                  down    
+GigabitEthernet10/13   unassigned      YES unset  down                  down    
+GigabitEthernet10/14   unassigned      YES unset  down                  down    
+GigabitEthernet10/15   unassigned      YES unset  down                  down    
+GigabitEthernet10/16   unassigned      YES unset  down                  down    
+GigabitEthernet10/17   unassigned      YES unset  down                  down    
+GigabitEthernet10/18   unassigned      YES unset  down                  down    
+GigabitEthernet10/19   unassigned      YES unset  down                  down    
+GigabitEthernet10/20   unassigned      YES unset  down                  down    
+GigabitEthernet10/21   unassigned      YES unset  down                  down    
+GigabitEthernet10/22   unassigned      YES unset  down                  down    
+GigabitEthernet10/23   unassigned      YES unset  down                  down    
+GigabitEthernet10/24   unassigned      YES unset  down                  down    
+GigabitEthernet10/25   unassigned      YES unset  down                  down    
+GigabitEthernet10/26   unassigned      YES unset  down                  down    
+GigabitEthernet10/27   unassigned      YES unset  down                  down    
+GigabitEthernet10/28   unassigned      YES unset  down                  down    
+GigabitEthernet10/29   unassigned      YES unset  down                  down    
+GigabitEthernet10/30   unassigned      YES unset  down                  down    
+GigabitEthernet10/31   unassigned      YES unset  down                  down    
+GigabitEthernet10/32   unassigned      YES unset  down                  down    
+GigabitEthernet10/33   unassigned      YES unset  down                  down    
+GigabitEthernet10/34   unassigned      YES unset  down                  down    
+GigabitEthernet10/35   unassigned      YES unset  down                  down    
+GigabitEthernet10/36   unassigned      YES unset  down                  down    
+GigabitEthernet10/37   unassigned      YES unset  down                  down    
+GigabitEthernet10/38   unassigned      YES unset  down                  down    
+GigabitEthernet10/39   unassigned      YES unset  down                  down    
+GigabitEthernet10/40   unassigned      YES unset  up                    up      
+GigabitEthernet10/41   unassigned      YES unset  down                  down    
+GigabitEthernet10/42   unassigned      YES unset  down                  down    
+GigabitEthernet10/43   unassigned      YES unset  down                  down    
+GigabitEthernet10/44   unassigned      YES unset  down                  down    
+GigabitEthernet10/45   unassigned      YES unset  down                  down    
+GigabitEthernet10/46   unassigned      YES unset  down                  down    
+GigabitEthernet10/47   unassigned      YES unset  down                  down    
+GigabitEthernet10/48   unassigned      YES unset  up                    up      
+Port-channel1          unassigned      YES unset  up                    up      
+Port-channel2          unassigned      YES unset  up                    up      
+Port-channel11         unassigned      YES unset  up                    up      
+BJYZ002_DT_AS_32#show interface status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Gi3/1     TO Connection to 1 connected    421        a-full a-1000 10/100/1000-TX
+Gi3/2     TO Connection to 1 notconnect   421          auto   auto 10/100/1000-TX
+Gi3/3     TO Connection to 1 connected    421        a-full a-1000 10/100/1000-TX
+Gi3/4     TO Connection to 1 notconnect   421          auto   auto 10/100/1000-TX
+Gi3/5     TO Connection to B connected    421        a-full a-1000 10/100/1000-TX
+Gi3/6                        notconnect   1            auto   auto 10/100/1000-TX
+Gi3/7                        notconnect   1            auto   auto 10/100/1000-TX
+Gi3/8                        notconnect   1            auto   auto 10/100/1000-TX
+Gi3/9                        notconnect   1            auto   auto 10/100/1000-TX
+Gi3/10                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/11                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/12                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/13                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/14                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/15                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/16                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/17                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/18                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/19                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/20                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/21                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/22                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/23                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/24                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/25                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/26                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/27                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/28                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/29                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/30                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/31                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/32                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/33                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/34                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/35                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/36                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/37                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/38                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/39                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/40                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/41                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/42                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/43                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/44                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/45                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/46                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/47                       notconnect   1            auto   auto 10/100/1000-TX
+Gi3/48                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/1                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/2                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/3                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/4                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/5                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/6                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/7                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/8                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/9                        notconnect   1            auto   auto 10/100/1000-TX
+Gi4/10                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/11                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/12                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/13                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/14                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/15                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/16                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/17                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/18                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/19                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/20                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/21                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/22                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/23                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/24                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/25                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/26                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/27                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/28                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/29                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/30                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/31                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/32                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/33                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/34                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/35                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/36                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/37                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/38                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/39                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/40                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/41                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/42                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/43                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/44                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/45                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/46                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/47                       notconnect   1            auto   auto 10/100/1000-TX
+Gi4/48                       notconnect   1            auto   auto 10/100/1000-TX
+Te5/1                        notconnect   1            full    10G No X2
+Te5/2                        inactive     1            full    10G No X2
+Gi5/3                        inactive     1            full   1000 No Gbic
+Gi5/4                        inactive     1            full   1000 No Gbic
+Gi5/5                        inactive     1            full   1000 No Gbic
+Gi5/6                        inactive     1            full   1000 No Gbic
+Te6/1                        notconnect   1            full    10G No X2
+Te6/2                        inactive     1            full    10G No X2
+Gi6/3                        inactive     1            full   1000 No Gbic
+Gi6/4                        inactive     1            full   1000 No Gbic
+Gi6/5                        inactive     1            full   1000 No Gbic
+Gi6/6                        inactive     1            full   1000 No Gbic
+Gi7/1     Connection to AB01 connected    trunk        full   1000 1000BaseSX
+Gi7/2     TO Connection to 1 connected    420          full   1000 1000BaseSX
+Gi7/3     TO Connection to 1 connected    420          full   1000 1000BaseSX
+Gi7/4                        connected    1            full   1000 1000BaseSX
+Gi7/5                        notconnect   1            full   1000 1000BaseSX
+Gi7/6                        notconnect   1            full   1000 1000BaseSX
+Gi7/7                        notconnect   1            full   1000 1000BaseSX
+Gi7/8                        notconnect   1            full   1000 1000BaseSX
+Gi7/9     Connection to AB02 connected    trunk        full   1000 1000BaseSX
+Gi7/10                       notconnect   1            full   1000 1000BaseSX
+Gi7/11                       notconnect   1            full   1000 1000BaseSX
+Gi7/12                       notconnect   1            full   1000 1000BaseSX
+Gi7/13                       notconnect   1            full   1000 1000BaseSX
+Gi7/14                       notconnect   1            full   1000 1000BaseSX
+Gi7/15                       notconnect   1            full   1000 1000BaseSX
+Gi7/16                       notconnect   1            full   1000 1000BaseSX
+Gi7/17                       connected    trunk        full   1000 1000BaseSX
+Gi7/18                       notconnect   1            full   1000 1000BaseSX
+Gi7/19                       notconnect   1            full   1000 1000BaseSX
+Gi7/20                       notconnect   1            full   1000 1000BaseSX
+Gi7/21                       notconnect   1            full   1000 1000BaseSX
+Gi7/22                       notconnect   1            full   1000 1000BaseSX
+Gi7/23                       notconnect   1            full   1000 1000BaseSX
+Gi7/24                       notconnect   1            full   1000 1000BaseSX
+Gi7/25    Connection to AB02 connected    trunk        full   1000 1000BaseSX
+Gi7/26                       notconnect   1            full   1000 1000BaseSX
+Gi7/27                       notconnect   1            full   1000 1000BaseSX
+Gi7/28                       notconnect   1            full   1000 1000BaseSX
+Gi7/29                       notconnect   1            full   1000 1000BaseSX
+Gi7/30                       notconnect   1            full   1000 1000BaseSX
+Gi7/31                       notconnect   1            full   1000 1000BaseSX
+Gi7/32                       notconnect   1            full   1000 1000BaseSX
+Gi7/33                       notconnect   1            full   1000 1000BaseSX
+Gi7/34                       notconnect   1            full   1000 1000BaseSX
+Gi7/35                       notconnect   1            full   1000 1000BaseSX
+Gi7/36                       notconnect   1            full   1000 1000BaseSX
+Gi7/37                       notconnect   1            full   1000 1000BaseSX
+Gi7/38                       notconnect   1            full   1000 1000BaseSX
+Gi7/39                       notconnect   1            full   1000 1000BaseSX
+Gi7/40    Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi7/41                       notconnect   1            full   1000 1000BaseSX
+Gi7/42                       notconnect   1            full   1000 1000BaseSX
+Gi7/43                       notconnect   1            full   1000 1000BaseSX
+Gi7/44                       notconnect   1            full   1000 1000BaseSX
+Gi7/45                       notconnect   1            full   1000 1000BaseSX
+Gi7/46                       notconnect   1            full   1000 1000BaseSX
+Gi7/47                       notconnect   1            full   1000 1000BaseSX
+Gi7/48    Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi8/1     Connection to AB02 connected    trunk        full   1000 1000BaseSX
+Gi8/2                        notconnect   1            full   1000 1000BaseSX
+Gi8/3                        notconnect   1            full   1000 1000BaseSX
+Gi8/4                        notconnect   1            full   1000 1000BaseSX
+Gi8/5                        notconnect   1            full   1000 1000BaseSX
+Gi8/6                        notconnect   1            full   1000 1000BaseSX
+Gi8/7                        notconnect   1            full   1000 1000BaseSX
+Gi8/8                        notconnect   1            full   1000 1000BaseSX
+Gi8/9     Connection to AB02 connected    trunk        full   1000 1000BaseSX
+Gi8/10                       notconnect   1            full   1000 1000BaseSX
+Gi8/11                       notconnect   1            full   1000 1000BaseSX
+Gi8/12                       notconnect   1            full   1000 1000BaseSX
+Gi8/13                       notconnect   1            full   1000 1000BaseSX
+Gi8/14                       notconnect   1            full   1000 1000BaseSX
+Gi8/15                       notconnect   1            full   1000 1000BaseSX
+Gi8/16                       notconnect   1            full   1000 1000BaseSX
+Gi8/17    Connection to AB04 connected    trunk        full   1000 1000BaseSX
+Gi8/18                       notconnect   1            full   1000 1000BaseSX
+Gi8/19                       notconnect   1            full   1000 1000BaseSX
+Gi8/20                       notconnect   1            full   1000 1000BaseSX
+Gi8/21                       notconnect   1            full   1000 1000BaseSX
+Gi8/22                       notconnect   1            full   1000 1000BaseSX
+Gi8/23                       notconnect   1            full   1000 1000BaseSX
+Gi8/24                       notconnect   1            full   1000 1000BaseSX
+Gi8/25                       connected    trunk        full   1000 1000BaseSX
+Gi8/26                       notconnect   1            full   1000 1000BaseSX
+Gi8/27                       notconnect   1            full   1000 1000BaseSX
+Gi8/28                       notconnect   1            full   1000 1000BaseSX
+Gi8/29                       notconnect   1            full   1000 1000BaseSX
+Gi8/30                       notconnect   1            full   1000 1000BaseSX
+Gi8/31                       notconnect   1            full   1000 1000BaseSX
+Gi8/32                       notconnect   1            full   1000 1000BaseSX
+Gi8/33                       notconnect   1            full   1000 1000BaseSX
+Gi8/34                       notconnect   1            full   1000 1000BaseSX
+Gi8/35                       notconnect   1            full   1000 1000BaseSX
+Gi8/36                       notconnect   1            full   1000 1000BaseSX
+Gi8/37                       notconnect   1            full   1000 1000BaseSX
+Gi8/38                       notconnect   1            full   1000 1000BaseSX
+Gi8/39                       notconnect   1            full   1000 1000BaseSX
+Gi8/40    Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi8/41                       notconnect   1            full   1000 1000BaseSX
+Gi8/42                       notconnect   1            full   1000 1000BaseSX
+Gi8/43                       notconnect   1            full   1000 1000BaseSX
+Gi8/44                       notconnect   1            full   1000 1000BaseSX
+Gi8/45                       notconnect   1            full   1000 1000BaseSX
+Gi8/46                       notconnect   1            full   1000 1000BaseSX
+Gi8/47                       notconnect   1            full   1000 1000BaseSX
+Gi8/48    Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi9/1     Connection to AB05 connected    trunk        full   1000 1000BaseSX
+Gi9/2                        notconnect   1            full   1000 1000BaseSX
+Gi9/3                        notconnect   1            full   1000 1000BaseSX
+Gi9/4                        notconnect   1            full   1000 1000BaseSX
+Gi9/5                        notconnect   1            full   1000 1000BaseSX
+Gi9/6                        notconnect   1            full   1000 1000BaseSX
+Gi9/7                        notconnect   1            full   1000 1000BaseSX
+Gi9/8                        notconnect   1            full   1000 1000BaseSX
+Gi9/9     Connection to AB05 connected    trunk        full   1000 1000BaseSX
+Gi9/10                       notconnect   1            full   1000 1000BaseSX
+Gi9/11                       notconnect   1            full   1000 1000BaseSX
+Gi9/12                       notconnect   1            full   1000 1000BaseSX
+Gi9/13                       notconnect   1            full   1000 1000BaseSX
+Gi9/14                       notconnect   1            full   1000 1000BaseSX
+Gi9/15                       notconnect   1            full   1000 1000BaseSX
+Gi9/16                       notconnect   1            full   1000 1000BaseSX
+Gi9/17    Connection to AB05 connected    trunk        full   1000 1000BaseSX
+Gi9/18                       notconnect   1            full   1000 1000BaseSX
+Gi9/19                       notconnect   1            full   1000 1000BaseSX
+Gi9/20                       notconnect   1            full   1000 1000BaseSX
+Gi9/21                       notconnect   1            full   1000 1000BaseSX
+Gi9/22                       notconnect   1            full   1000 1000BaseSX
+Gi9/23                       notconnect   1            full   1000 1000BaseSX
+Gi9/24                       notconnect   1            full   1000 1000BaseSX
+Gi9/25    Connection to AB05 connected    trunk        full   1000 1000BaseSX
+Gi9/26                       notconnect   1            full   1000 1000BaseSX
+Gi9/27                       notconnect   1            full   1000 1000BaseSX
+Gi9/28                       notconnect   1            full   1000 1000BaseSX
+Gi9/29                       notconnect   1            full   1000 1000BaseSX
+Gi9/30                       notconnect   1            full   1000 1000BaseSX
+Gi9/31                       notconnect   1            full   1000 1000BaseSX
+Gi9/32                       notconnect   1            full   1000 1000BaseSX
+Gi9/33                       notconnect   1            full   1000 1000BaseSX
+Gi9/34                       notconnect   1            full   1000 1000BaseSX
+Gi9/35                       notconnect   1            full   1000 1000BaseSX
+Gi9/36                       notconnect   1            full   1000 1000BaseSX
+Gi9/37                       notconnect   1            full   1000 1000BaseSX
+Gi9/38                       notconnect   1            full   1000 1000BaseSX
+Gi9/39                       notconnect   1            full   1000 1000BaseSX
+Gi9/40    Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi9/41                       notconnect   1            full   1000 1000BaseSX
+Gi9/42                       notconnect   1            full   1000 1000BaseSX
+Gi9/43                       notconnect   1            full   1000 1000BaseSX
+Gi9/44                       notconnect   1            full   1000 1000BaseSX
+Gi9/45                       notconnect   1            full   1000 1000BaseSX
+Gi9/46                       notconnect   1            full   1000 1000BaseSX
+Gi9/47                       notconnect   1            full   1000 1000BaseSX
+Gi9/48    Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi10/1                       connected    1            full   1000 1000BaseSX
+Gi10/2                       notconnect   1            full   1000 1000BaseSX
+Gi10/3                       notconnect   1            full   1000 1000BaseSX
+Gi10/4                       notconnect   1            full   1000 1000BaseSX
+Gi10/5                       notconnect   1            full   1000 1000BaseSX
+Gi10/6                       notconnect   1            full   1000 1000BaseSX
+Gi10/7                       notconnect   1            full   1000 1000BaseSX
+Gi10/8                       notconnect   1            full   1000 1000BaseSX
+Gi10/9    Connection to AB07 connected    trunk        full   1000 1000BaseSX
+Gi10/10                      notconnect   1            full   1000 1000BaseSX
+Gi10/11                      notconnect   1            full   1000 1000BaseSX
+Gi10/12                      notconnect   1            full   1000 1000BaseSX
+Gi10/13                      notconnect   1            full   1000 1000BaseSX
+Gi10/14                      notconnect   1            full   1000 1000BaseSX
+Gi10/15                      notconnect   1            full   1000 1000BaseSX
+Gi10/16                      notconnect   1            full   1000 1000BaseSX
+Gi10/17                      notconnect   1            full   1000 1000BaseSX
+Gi10/18                      notconnect   1            full   1000 1000BaseSX
+Gi10/19                      notconnect   1            full   1000 1000BaseSX
+Gi10/20                      notconnect   1            full   1000 1000BaseSX
+Gi10/21                      notconnect   1            full   1000 1000BaseSX
+Gi10/22                      notconnect   1            full   1000 1000BaseSX
+Gi10/23                      notconnect   1            full   1000 1000BaseSX
+Gi10/24                      notconnect   1            full   1000 1000BaseSX
+Gi10/25                      notconnect   1            full   1000 1000BaseSX
+Gi10/26                      notconnect   1            full   1000 1000BaseSX
+Gi10/27                      notconnect   1            full   1000 1000BaseSX
+Gi10/28                      notconnect   1            full   1000 1000BaseSX
+Gi10/29                      notconnect   1            full   1000 1000BaseSX
+Gi10/30                      notconnect   1            full   1000 1000BaseSX
+Gi10/31                      notconnect   1            full   1000 1000BaseSX
+Gi10/32                      notconnect   1            full   1000 1000BaseSX
+Gi10/33                      notconnect   1            full   1000 1000BaseSX
+Gi10/34                      notconnect   1            full   1000 1000BaseSX
+Gi10/35                      notconnect   1            full   1000 1000BaseSX
+Gi10/36                      notconnect   1            full   1000 1000BaseSX
+Gi10/37                      notconnect   1            full   1000 1000BaseSX
+Gi10/38                      notconnect   1            full   1000 1000BaseSX
+Gi10/39                      notconnect   1            full   1000 1000BaseSX
+Gi10/40   Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Gi10/41                      notconnect   1            full   1000 1000BaseSX
+Gi10/42                      notconnect   1            full   1000 1000BaseSX
+Gi10/43                      notconnect   1            full   1000 1000BaseSX
+Gi10/44                      notconnect   1            full   1000 1000BaseSX
+Gi10/45                      notconnect   1            full   1000 1000BaseSX
+Gi10/46                      notconnect   1            full   1000 1000BaseSX
+Gi10/47                      notconnect   1            full   1000 1000BaseSX
+Gi10/48   Connection to BJYZ connected    trunk        full   1000 1000BaseSX
+Po1       Connection to BJYZ connected    trunk      a-full a-1000 
+Po2       Connection to BJYZ connected    trunk      a-full a-1000 
+Po11      TO  Connection to  connected    420        a-full a-1000 
+BJYZ002_DT_AS_32#show interface description
+Interface                      Status         Protocol Description
+Vl1                            up             up       
+Vl849                          up             up       Mgmt_Vlan
+Fa1                            down           down     
+Gi3/1                          up             up       TO Connection to 10.233.76.33
+Gi3/2                          down           down     TO Connection to 10.233.76.34
+Gi3/3                          up             up       TO Connection to 10.233.76.35
+Gi3/4                          down           down     TO Connection to 10.233.76.36
+Gi3/5                          up             up       TO Connection to BIG-IP3900-EM4000 10.233.76.37
+Gi3/6                          down           down     
+Gi3/7                          down           down     
+Gi3/8                          down           down     
+Gi3/9                          down           down     
+Gi3/10                         down           down     
+Gi3/11                         down           down     
+Gi3/12                         down           down     
+Gi3/13                         down           down     
+Gi3/14                         down           down     
+Gi3/15                         down           down     
+Gi3/16                         down           down     
+Gi3/17                         down           down     
+Gi3/18                         down           down     
+Gi3/19                         down           down     
+Gi3/20                         down           down     
+Gi3/21                         down           down     
+Gi3/22                         down           down     
+Gi3/23                         down           down     
+Gi3/24                         down           down     
+Gi3/25                         down           down     
+Gi3/26                         down           down     
+Gi3/27                         down           down     
+Gi3/28                         down           down     
+Gi3/29                         down           down     
+Gi3/30                         down           down     
+Gi3/31                         down           down     
+Gi3/32                         down           down     
+Gi3/33                         down           down     
+Gi3/34                         down           down     
+Gi3/35                         down           down     
+Gi3/36                         down           down     
+Gi3/37                         down           down     
+Gi3/38                         down           down     
+Gi3/39                         down           down     
+Gi3/40                         down           down     
+Gi3/41                         down           down     
+Gi3/42                         down           down     
+Gi3/43                         down           down     
+Gi3/44                         down           down     
+Gi3/45                         down           down     
+Gi3/46                         down           down     
+Gi3/47                         down           down     
+Gi3/48                         down           down     
+Gi4/1                          down           down     
+Gi4/2                          down           down     
+Gi4/3                          down           down     
+Gi4/4                          down           down     
+Gi4/5                          down           down     
+Gi4/6                          down           down     
+Gi4/7                          down           down     
+Gi4/8                          down           down     
+Gi4/9                          down           down     
+Gi4/10                         down           down     
+Gi4/11                         down           down     
+Gi4/12                         down           down     
+Gi4/13                         down           down     
+Gi4/14                         down           down     
+Gi4/15                         down           down     
+Gi4/16                         down           down     
+Gi4/17                         down           down     
+Gi4/18                         down           down     
+Gi4/19                         down           down     
+Gi4/20                         down           down     
+Gi4/21                         down           down     
+Gi4/22                         down           down     
+Gi4/23                         down           down     
+Gi4/24                         down           down     
+Gi4/25                         down           down     
+Gi4/26                         down           down     
+Gi4/27                         down           down     
+Gi4/28                         down           down     
+Gi4/29                         down           down     
+Gi4/30                         down           down     
+Gi4/31                         down           down     
+Gi4/32                         down           down     
+Gi4/33                         down           down     
+Gi4/34                         down           down     
+Gi4/35                         down           down     
+Gi4/36                         down           down     
+Gi4/37                         down           down     
+Gi4/38                         down           down     
+Gi4/39                         down           down     
+Gi4/40                         down           down     
+Gi4/41                         down           down     
+Gi4/42                         down           down     
+Gi4/43                         down           down     
+Gi4/44                         down           down     
+Gi4/45                         down           down     
+Gi4/46                         down           down     
+Gi4/47                         down           down     
+Gi4/48                         down           down     
+Te5/1                          down           down     
+Te5/2                          down           down     
+Gi5/3                          down           down     
+Gi5/4                          down           down     
+Gi5/5                          down           down     
+Gi5/6                          down           down     
+Te6/1                          down           down     
+Te6/2                          down           down     
+Gi6/3                          down           down     
+Gi6/4                          down           down     
+Gi6/5                          down           down     
+Gi6/6                          down           down     
+Gi7/1                          up             up       Connection to AB01-200-J02-PLEXP1 & AB01-200-J02-PLEXO1
+Gi7/2                          up             up       TO Connection to 10.233.76.2(vip3-26)
+Gi7/3                          up             up       TO Connection to 10.233.76.2(vip3-26)
+Gi7/4                          up             up       
+Gi7/5                          down           down     
+Gi7/6                          down           down     
+Gi7/7                          down           down     
+Gi7/8                          down           down     
+Gi7/9                          up             up       Connection to AB02-501-PLEXH & AB02-501-PLEXJ
+Gi7/10                         down           down     
+Gi7/11                         down           down     
+Gi7/12                         down           down     
+Gi7/13                         down           down     
+Gi7/14                         down           down     
+Gi7/15                         down           down     
+Gi7/16                         down           down     
+Gi7/17                         up             up       
+Gi7/18                         down           down     
+Gi7/19                         down           down     
+Gi7/20                         down           down     
+Gi7/21                         down           down     
+Gi7/22                         down           down     
+Gi7/23                         down           down     
+Gi7/24                         down           down     
+Gi7/25                         up             up       Connection to AB02-200-J02-PLEXF/ZHUJI/PLEXL1
+Gi7/26                         down           down     
+Gi7/27                         down           down     
+Gi7/28                         down           down     
+Gi7/29                         down           down     
+Gi7/30                         down           down     
+Gi7/31                         down           down     
+Gi7/32                         down           down     
+Gi7/33                         down           down     
+Gi7/34                         down           down     
+Gi7/35                         down           down     
+Gi7/36                         down           down     
+Gi7/37                         down           down     
+Gi7/38                         down           down     
+Gi7/39                         down           down     
+Gi7/40                         up             up       Connection to BJYZ003_DT_DS_01-VDC2
+Gi7/41                         down           down     
+Gi7/42                         down           down     
+Gi7/43                         down           down     
+Gi7/44                         down           down     
+Gi7/45                         down           down     
+Gi7/46                         down           down     
+Gi7/47                         down           down     
+Gi7/48                         up             up       Connection to BJYZ003_DT_DS_02-VDC2
+Gi8/1                          up             up       Connection to AB02-201-J03-ZHUJI/PLEXI1
+Gi8/2                          down           down     
+Gi8/3                          down           down     
+Gi8/4                          down           down     
+Gi8/5                          down           down     
+Gi8/6                          down           down     
+Gi8/7                          down           down     
+Gi8/8                          down           down     
+Gi8/9                          up             up       Connection to AB02-181-PLEXD 
+Gi8/10                         down           down     
+Gi8/11                         down           down     
+Gi8/12                         down           down     
+Gi8/13                         down           down     
+Gi8/14                         down           down     
+Gi8/15                         down           down     
+Gi8/16                         down           down     
+Gi8/17                         up             up       Connection to AB04-281-J02-PLEXO1 & AB04-281-J02-PLEXG1
+Gi8/18                         down           down     
+Gi8/19                         down           down     
+Gi8/20                         down           down     
+Gi8/21                         down           down     
+Gi8/22                         down           down     
+Gi8/23                         down           down     
+Gi8/24                         down           down     
+Gi8/25                         up             up       
+Gi8/26                         down           down     
+Gi8/27                         down           down     
+Gi8/28                         down           down     
+Gi8/29                         down           down     
+Gi8/30                         down           down     
+Gi8/31                         down           down     
+Gi8/32                         down           down     
+Gi8/33                         down           down     
+Gi8/34                         down           down     
+Gi8/35                         down           down     
+Gi8/36                         down           down     
+Gi8/37                         down           down     
+Gi8/38                         down           down     
+Gi8/39                         down           down     
+Gi8/40                         up             up       Connection to BJYZ003_DT_DS_01-VDC2
+Gi8/41                         down           down     
+Gi8/42                         down           down     
+Gi8/43                         down           down     
+Gi8/44                         down           down     
+Gi8/45                         down           down     
+Gi8/46                         down           down     
+Gi8/47                         down           down     
+Gi8/48                         up             up       Connection to BJYZ003_DT_DS_02-VDC2
+Gi9/1                          up             up       Connection to AB05-200-J02-ZHUJI
+Gi9/2                          down           down     
+Gi9/3                          down           down     
+Gi9/4                          down           down     
+Gi9/5                          down           down     
+Gi9/6                          down           down     
+Gi9/7                          down           down     
+Gi9/8                          down           down     
+Gi9/9                          up             up       Connection to AB05-201-J03-PLEXH & AB05-200-J01-PLEXI1
+Gi9/10                         down           down     
+Gi9/11                         down           down     
+Gi9/12                         down           down     
+Gi9/13                         down           down     
+Gi9/14                         down           down     
+Gi9/15                         down           down     
+Gi9/16                         down           down     
+Gi9/17                         up             up       Connection to AB05-181-PLEXD & AB05-181-PLEXF
+Gi9/18                         down           down     
+Gi9/19                         down           down     
+Gi9/20                         down           down     
+Gi9/21                         down           down     
+Gi9/22                         down           down     
+Gi9/23                         down           down     
+Gi9/24                         down           down     
+Gi9/25                         up             up       Connection to AB05-501-PLEXJ & AB05-500-PLEXL1
+Gi9/26                         down           down     
+Gi9/27                         down           down     
+Gi9/28                         down           down     
+Gi9/29                         down           down     
+Gi9/30                         down           down     
+Gi9/31                         down           down     
+Gi9/32                         down           down     
+Gi9/33                         down           down     
+Gi9/34                         down           down     
+Gi9/35                         down           down     
+Gi9/36                         down           down     
+Gi9/37                         down           down     
+Gi9/38                         down           down     
+Gi9/39                         down           down     
+Gi9/40                         up             up       Connection to BJYZ003_DT_DS_01-VDC2
+Gi9/41                         down           down     
+Gi9/42                         down           down     
+Gi9/43                         down           down     
+Gi9/44                         down           down     
+Gi9/45                         down           down     
+Gi9/46                         down           down     
+Gi9/47                         down           down     
+Gi9/48                         up             up       Connection to BJYZ003_DT_DS_02-VDC2
+Gi10/1                         up             up       
+Gi10/2                         down           down     
+Gi10/3                         down           down     
+Gi10/4                         down           down     
+Gi10/5                         down           down     
+Gi10/6                         down           down     
+Gi10/7                         down           down     
+Gi10/8                         down           down     
+Gi10/9                         up             up       Connection to AB07-191-J02-PLEXQX
+Gi10/10                        down           down     
+Gi10/11                        down           down     
+Gi10/12                        down           down     
+Gi10/13                        down           down     
+Gi10/14                        down           down     
+Gi10/15                        down           down     
+Gi10/16                        down           down     
+Gi10/17                        down           down     
+Gi10/18                        down           down     
+Gi10/19                        down           down     
+Gi10/20                        down           down     
+Gi10/21                        down           down     
+Gi10/22                        down           down     
+Gi10/23                        down           down     
+Gi10/24                        down           down     
+Gi10/25                        down           down     
+Gi10/26                        down           down     
+Gi10/27                        down           down     
+Gi10/28                        down           down     
+Gi10/29                        down           down     
+Gi10/30                        down           down     
+Gi10/31                        down           down     
+Gi10/32                        down           down     
+Gi10/33                        down           down     
+Gi10/34                        down           down     
+Gi10/35                        down           down     
+Gi10/36                        down           down     
+Gi10/37                        down           down     
+Gi10/38                        down           down     
+Gi10/39                        down           down     
+Gi10/40                        up             up       Connection to BJYZ003_DT_DS_01-VDC2
+Gi10/41                        down           down     
+Gi10/42                        down           down     
+Gi10/43                        down           down     
+Gi10/44                        down           down     
+Gi10/45                        down           down     
+Gi10/46                        down           down     
+Gi10/47                        down           down     
+Gi10/48                        up             up       Connection to BJYZ003_DT_DS_02-VDC2
+Po1                            up             up       Connection to BJYZ003_DT_DS_02-VDC2
+Po2                            up             up       Connection to BJYZ003_DT_DS_01-VDC2
+Po11                           up             up       TO  Connection to 10.233.76.2(vip3-26)
+BJYZ002_DT_AS_32#show etherchannel summary
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 3
+Number of aggregators:           3
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+1      Po1(SU)          -        Gi7/48(P)   Gi8/48(P)   Gi9/48(P)   
+                                 Gi10/48(P)  
+2      Po2(SU)          -        Gi7/40(P)   Gi8/40(P)   Gi9/40(P)   
+                                 Gi10/40(P)  
+11     Po11(SU)         -        Gi7/2(P)    Gi7/3(P)    
+
+BJYZ002_DT_AS_32#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi3/6, Gi3/7, Gi3/8, Gi3/9, Gi3/10, Gi3/11, Gi3/12, Gi3/13, Gi3/14, Gi3/15, Gi3/16
+                                                Gi3/17, Gi3/18, Gi3/19, Gi3/20, Gi3/21, Gi3/22, Gi3/23, Gi3/24, Gi3/25, Gi3/26
+                                                Gi3/27, Gi3/28, Gi3/29, Gi3/30, Gi3/31, Gi3/32, Gi3/33, Gi3/34, Gi3/35, Gi3/36
+                                                Gi3/37, Gi3/38, Gi3/39, Gi3/40, Gi3/41, Gi3/42, Gi3/43, Gi3/44, Gi3/45, Gi3/46
+                                                Gi3/47, Gi3/48, Gi4/1, Gi4/2, Gi4/3, Gi4/4, Gi4/5, Gi4/6, Gi4/7, Gi4/8, Gi4/9
+                                                Gi4/10, Gi4/11, Gi4/12, Gi4/13, Gi4/14, Gi4/15, Gi4/16, Gi4/17, Gi4/18, Gi4/19
+                                                Gi4/20, Gi4/21, Gi4/22, Gi4/23, Gi4/24, Gi4/25, Gi4/26, Gi4/27, Gi4/28, Gi4/29
+                                                Gi4/30, Gi4/31, Gi4/32, Gi4/33, Gi4/34, Gi4/35, Gi4/36, Gi4/37, Gi4/38, Gi4/39
+                                                Gi4/40, Gi4/41, Gi4/42, Gi4/43, Gi4/44, Gi4/45, Gi4/46, Gi4/47, Gi4/48, Te5/1, Te5/2
+                                                Gi5/3, Gi5/4, Gi5/5, Gi5/6, Te6/1, Te6/2, Gi6/3, Gi6/4, Gi6/5, Gi6/6, Gi7/4, Gi7/5
+                                                Gi7/6, Gi7/7, Gi7/8, Gi7/10, Gi7/11, Gi7/12, Gi7/13, Gi7/14, Gi7/15, Gi7/16, Gi7/18
+                                                Gi7/19, Gi7/20, Gi7/21, Gi7/22, Gi7/23, Gi7/24, Gi7/26, Gi7/27, Gi7/28, Gi7/29
+                                                Gi7/30, Gi7/31, Gi7/32, Gi7/33, Gi7/34, Gi7/35, Gi7/36, Gi7/37, Gi7/38, Gi7/39
+                                                Gi7/41, Gi7/42, Gi7/43, Gi7/44, Gi7/45, Gi7/46, Gi7/47, Gi8/2, Gi8/3, Gi8/4, Gi8/5
+                                                Gi8/6, Gi8/7, Gi8/8, Gi8/10, Gi8/11, Gi8/12, Gi8/13, Gi8/14, Gi8/15, Gi8/16, Gi8/18
+                                                Gi8/19, Gi8/20, Gi8/21, Gi8/22, Gi8/23, Gi8/24, Gi8/26, Gi8/27, Gi8/28, Gi8/29
+                                                Gi8/30, Gi8/31, Gi8/32, Gi8/33, Gi8/34, Gi8/35, Gi8/36, Gi8/37, Gi8/38, Gi8/39
+                                                Gi8/41, Gi8/42, Gi8/43, Gi8/44, Gi8/45, Gi8/46, Gi8/47, Gi9/2, Gi9/3, Gi9/4, Gi9/5
+                                                Gi9/6, Gi9/7, Gi9/8, Gi9/10, Gi9/11, Gi9/12, Gi9/13, Gi9/14, Gi9/15, Gi9/16, Gi9/18
+                                                Gi9/19, Gi9/20, Gi9/21, Gi9/22, Gi9/23, Gi9/24, Gi9/26, Gi9/27, Gi9/28, Gi9/29
+                                                Gi9/30, Gi9/31, Gi9/32, Gi9/33, Gi9/34, Gi9/35, Gi9/36, Gi9/37, Gi9/38, Gi9/39
+                                                Gi9/41, Gi9/42, Gi9/43, Gi9/44, Gi9/45, Gi9/46, Gi9/47, Gi10/1, Gi10/2, Gi10/3
+                                                Gi10/4, Gi10/5, Gi10/6, Gi10/7, Gi10/8, Gi10/10, Gi10/11, Gi10/12, Gi10/13, Gi10/14
+                                                Gi10/15, Gi10/16, Gi10/17, Gi10/18, Gi10/19, Gi10/20, Gi10/21, Gi10/22, Gi10/23
+                                                Gi10/24, Gi10/25, Gi10/26, Gi10/27, Gi10/28, Gi10/29, Gi10/30, Gi10/31, Gi10/32
+                                                Gi10/33, Gi10/34, Gi10/35, Gi10/36, Gi10/37, Gi10/38, Gi10/39, Gi10/41, Gi10/42
+                                                Gi10/43, Gi10/44, Gi10/45, Gi10/46, Gi10/47
+400  OA-PLEX                          active    
+401  PLEXF-V401                       active    
+402  PLEXF-V402                       active    
+403  PLEXH-V403                       active    
+404  PLEXH-V404                       active    
+405  PLEXJ-V405                       active    
+406  PLEXJ-V406                       active    
+407  PLEXD-V407                       active    
+408  PLEXD-V408                       active    
+409  PLEXQX-V409                      active    
+410  PLEXI1-V410                      active    
+411  PLEXI1-V411                      active    
+412  PLEXL1-V412                      active    
+413  PLEXL1-V413                      active    
+414  ZVM-V414                         active    
+420  serverfarm-v420                  active    Po11
+421  serverfarm-v421                  active    Gi3/1, Gi3/2, Gi3/3, Gi3/4, Gi3/5
+849  Mgmt_Vlan                        active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+BJYZ002_DT_AS_32#show module
+Chassis Type : WS-C4510R-E
+
+Power consumed by backplane : 40 Watts
+
+Mod Ports Card Type                              Model              Serial No.
+---+-----+--------------------------------------+------------------+-----------
+ 3    48  10/100/1000BaseT Premium POE E Series  WS-X4648-RJ45V+E   JAE14450SME 
+ 4    48  10/100/1000BaseT Premium POE E Series  WS-X4648-RJ45V+E   JAE14450SIL 
+ 5     6  Sup 6-E 10GE (X2), 1000BaseX (SFP)     WS-X45-SUP6-E      JAE14440S40 
+ 6     6  Sup 6-E 10GE (X2), 1000BaseX (SFP)     WS-X45-SUP6-E      JAE14440NIF 
+ 7    48  1000BaseX SFP                          WS-X4448-GB-SFP    JAE14440J17 
+ 8    48  1000BaseX SFP                          WS-X4448-GB-SFP    JAE14440J1C 
+ 9    48  1000BaseX SFP                          WS-X4448-GB-SFP    JAE14440J1E 
+10    48  1000BaseX SFP                          WS-X4448-GB-SFP    JAE14440BDM 
+
+ M MAC addresses                    Hw  Fw           Sw               Status
+--+--------------------------------+---+------------+----------------+---------
+ 3 c471.fe33.d790 to c471.fe33.d7bf 2.0                               Ok       
+ 4 588d.0982.3840 to 588d.0982.386f 2.0                               Ok       
+ 5 1cdf.0f6c.0740 to 1cdf.0f6c.0745 1.7 12.2(44r)SG5 12.2(53)SG2      Ok       
+ 6 1cdf.0f6c.0746 to 1cdf.0f6c.074b 1.7 12.2(44r)SG5 12.2(53)SG2      Ok       
+ 7 1cdf.0f49.7320 to 1cdf.0f49.734f 1.3                               Ok       
+ 8 588d.0929.3bd0 to 588d.0929.3bff 1.3                               Ok       
+ 9 1cdf.0f49.72c0 to 1cdf.0f49.72ef 1.3                               Ok       
+10 588d.0929.2880 to 588d.0929.28af 1.3                               Ok       
+
+Mod  Redundancy role     Operating mode      Redundancy status
+----+-------------------+-------------------+----------------------------------
+ 5   Active Supervisor   SSO                 Active                            
+ 6   Standby Supervisor  SSO                 Standby hot                       
+
+BJYZ002_DT_AS_32#

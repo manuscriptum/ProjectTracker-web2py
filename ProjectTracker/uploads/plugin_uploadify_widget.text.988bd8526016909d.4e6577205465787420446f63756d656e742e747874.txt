@@ -1,0 +1,2 @@
+ns1.webfaction.com	 207.44.144.46
+ns2.webfaction.com	 172.79.142.142

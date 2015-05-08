@@ -1,0 +1,51 @@
+{{extend 'layout.html'}}
+<h1>Your Workspace</h1>
+{{if len(projects):}}
+<h3>
+    Projects:
+</h3>
+{{for project in projects:}}
+{{=A(TAG.i(_class='icon-list icon-white'), T(" " + project.title), _href=URL('default', 'project', args=project.id), _class='btn btn-primary btn-large')}}
+{{if len(assigned_items):}}
+<table class="table table-bordered">
+    <thead><h5>Tasks Assigned to you</h5>
+        <tr><th>Task:</th><th>Due:</th><th>Assigned by:</th><th>Reminders</th></tr>
+    </thead>
+        <tbody>
+        {{for item in assigned_items:}}
+            {{if item.project_id==project.id:}}
+                <tr><th>{{=A(T(item.body), _href=URL('default','item',args=[project.id, item.id]))}}</th>
+                    <th>{{=item.due}}</th>
+                    <th>{{=get_user(item.created_by)}}</th>
+                    <th>{{=A(T('Reminder'), _href=URL('default','reminder',args=[project.id, item.id]), _class='btn btn-small btn-inverse')}}</th>
+                </tr>
+                {{pass}}
+            {{pass}}
+    </tbody>
+</table>
+{{pass}}
+{{if len(created_items):}}
+<table class="table table-bordered">
+    <thead><h5>Tasks Created by you</h5>
+        <tr><th>Task:</th><th>Due:</th><th>Assigned to:</th><th>Reminders</th></tr>
+    </thead>
+        <tbody>
+        {{for item in created_items:}}
+            {{if item.project_id==project.id:}}
+            <tr><th>{{=A(T(item.body), _href=URL('default','item',args=[project.id, item.id]))}}</th>
+                <th>{{=item.due}}</th>
+                <th>{{=get_user(item.assign_to)}}</th>
+                <th>{{=A(T('Reminder'), _href=URL('default','reminder',args=[project.id, item.id]), _class='btn btn-small btn-inverse')}}</th>
+                </tr>
+               {{pass}}
+        {{pass}}
+    </tbody>
+</table>
+{{pass}}
+{{pass}}
+{{else:}}
+<h3>
+    {{=I('No Projects yet...')}}<br />
+    {{=A(B(T('Create One!')), _href=URL('default','new_project'), _class='btn btn-success', _style='margin-top: 1em;')}}
+</h3>
+{{pass}}

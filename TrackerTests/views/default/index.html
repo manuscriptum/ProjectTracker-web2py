@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+
+<h3>Tracker Testing Application</h3>
+
+<h4>{{=T('Click the button below to run the functional tests.')}}</h4>
+{{=A(T('Run Tests'), _href=URL('default','tests'), _class='btn btn-success')}}
+
+<h4>{{=T('Download Standalone Python Program for testing Project Tracker with Selenium webdriver.')}}</h4>
+{{=A(T('Download'), _href=URL('static','file/pyTrackerTester.zip'), _class='btn btn-primary')}}

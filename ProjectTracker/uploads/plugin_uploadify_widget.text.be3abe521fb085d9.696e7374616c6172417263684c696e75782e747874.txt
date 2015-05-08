@@ -1,0 +1,41 @@
+pacman -Syu     - esto actualiza la distro
+
+Creamos nuestro usuario:
+useradd -m -g users -G audio,video,optical,storage,lp,power,wheel,games -s /bin/bash franco
+luego establecemos la password del usuario:
+passwd alvlgeddl
+y listo, ahora podemos proceder con la configuración de sudo.
+
+instalar:
+
+* Utilidades del sistema
+sudo    - Después de instalarlo debemos modificar que usuario tendrá permisos de root, entonces escribimos EDITOR=nano visudo, de esta manera nos permitirá editar el archivo con nano. En el archivo eliminamos los "#" delante del grupo %wheel, y eso es todo.
+
+dbus    - agregar a "/etc/rc.conf" antes de network
+
+
+* Para poder tener video
+xorg-server
+xorg-xinit 
+xorg-utils 
+xorg-server-utils
+libgl   (*) - No se que tan importante será, habría que probar no instalarlo y ver.
+mesa
+
+* Sonido
+pacman -S pulseaudio alsa-plugins
+
+* Dispositivos de entrada
+xf86-input-evdev
+
+* Fuentes, para que el texto sea desplegado de forma correcta
+ttf-defajvu
+ttf-ms-fonts
+ttf-vista-fonts
+
+
+* Escritorio
+lxde    - alternativamente se pueden seleccionar manualmente uno por uno
+lxapperance lxde-common lxde-icon-theme lxmenu-data lxpanel lxrandr lxsession-lite lxtask lxterminal menu-cache pcmanfm openbox obconf obtheme openbox-themes (no funciona correctamente)
+
+Después de haber instalado el entorno de escritorio tenemos que agregar el administrador de sesión (en este caso lxdm) al final de la lista de los demonios del sistema en el archivo "/etc/rc.conf".

@@ -1,0 +1,3 @@
+
+In order to use this provider, check out setup instructions at: 
+http://fxjr.blogspot.com/2011/05/npgsql-design-time-support-preview.html

@@ -1,0 +1,57 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+
+<h3>Tracker Client Application</h3>
+<div class="well">
+<h4>{{=T('Use this client to add new tasks to the Project Tracker Application')}}</h4>
+<ul>
+    <li>
+        {{=B('To use this client please fill in the data below with the new task information.')}}
+    </li>
+    <li>
+        {{=T('Project Name - should be a name of a project that has already been created on Project Tracker.')}}
+    </li>
+    <li>
+        {{=T('New Task - new to do task to add to the referenced project.')}}
+    </li>
+    <li>
+        {{=T('Your Username - your last name - should already be registered on Project Tracker.')}}
+    </li>
+    <li>
+        {{=T('Assign to - the last name of the user to assign this task to - should already be registered on Project Tracker.')}}
+    </li>
+    <li>
+        {{=B('*Note - all information requires proper spelling and captialization as used in Project Tracker, otherwise it will return an error.')}}
+    </li>
+</ul>
+
+    <form enctype="multipart/form-data" action="{{=URL()}}" method="post">
+        <fieldset>
+            <h2><u>New Task:</u></h2>
+            <label><strong>Project Name:</strong></label>
+            {{=INPUT(_type="text", _name="project", _placeholder="Name of Existing Project")}}
+            <label><strong>New Task:</strong></label>
+            {{=INPUT(_type="text", _name="newtask", _placeholder="New To do Task")}}
+            <label><strong>Your Username:</strong></label>
+            {{=INPUT(_type="text", _name="user", _placeholder="Your Last Name")}}
+            <label><strong>Assign to:</strong></label>
+            {{=INPUT(_type="text", _name="assignto", _placeholder="Last Name of Assignee")}}
+            <br />
+            <label class="checkbox">
+                  {{=INPUT(_type="radio", _name="via", _value="xml")}} <strong>XML</strong>
+            </label>
+            <label class="checkbox">
+                  {{=INPUT(_type="radio", _name="via", _value="json")}} <strong>JSON</strong>
+            </label>
+            <label class="checkbox">
+                  {{=INPUT(_type="radio", _name="via", _value="xmlrpc")}} <strong>XMLRPC</strong>
+            </label>
+            <br />
+            {{=INPUT(_type="submit", _value="Submit")}}
+      </fieldset>
+    </form>
+</div>
+
+{{block right_sidebar}}
+{{=A(T("Home"), _href=URL('default','index'), _class='btn btn-large btn-primary')}}
+{{end}}

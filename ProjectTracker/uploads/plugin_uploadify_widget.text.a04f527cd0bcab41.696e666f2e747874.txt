@@ -1,0 +1,76 @@
+ Die Datei "FRITZ!Box-Labor-xxxx.zip" in diesem Verzeichnis enthält
+ - die Laborversion für FRITZ!Box Fon WLAN 7390
+ - die letzte und die aktuelle Release-Firmware der 7390 Version 84.05.50
+ - diese Datei info.txt mit wichtigen Informationen zu dieser Labor-Versionen	
+_________________________________________________________
+
+Informationen zur Arbeit mit den Labor-Versionen
+
+ Die Firmware (FRITZ.Box_Fon_WLAN_7390.Labor.84.05.xx-xxxxx.image) ist eine
+ Labor-Versionen. Sie wurde von uns vor der Veröffentlichung in Standardumgebungen
+ getestet. Für etwaige Schäden, die aus der Installation oder der Verwendung der
+ Labor-Version entstehen, kann keine Haftung übernommen werden. AVM leistet für
+ die Labor-Versionen keinen Support.
+ Beachten Sie die Hinweise zum Test der Labor-Version in dieser Datei.
+
+ Wir freuen uns über Ihr Feedback, das Sie auf der Seite www.avm.de/Labor ab-
+ geben können. Auf dieser Seite finden Sie alle aktuellen FRITZ!-Labor-Versionen.
+
+
+ Bevor Sie mit dem Test der Labor-Version beginnen
+
+ 1) Sie setzen bisher keine aktuelle Firmware für Ihre FRITZ!Box ein? 
+    Dann aktualisieren Sie zunächst die Firmware auf die aktuelle Release-Firmware.  
+ 2) Sichern Sie Ihre momentanen Einstellungen unter "System / Einstellungen sichern".
+    Die gesicherten Einstellungen benötigen Sie, wenn Sie von der Labor-Firmware 
+    wieder auf die Release-Firmware wechseln wollen.
+
+
+ Test der Labor-Version
+
+ Wenn Ihre FRITZ!Box den aktuellen Firmwarestand hat und Ihre momentanen
+ Einstellungen gesichert sind, können Sie mit dem Test beginnen.
+
+ 1) Entpacken Sie die Datei fritzbox-labor-7390-xxxxx.zip
+ 2) Führen Sie das Update über die Benutzeroberfläche der FRITZ!Box durch:
+    "System / Firmware-Update".
+    Geben Sie in das Eingabefeld den Pfad zur Labor-Firmware und diese selbst
+    (FRITZ.Box_Fon_WLAN_7390.Labor.84.05.xx-xxxxx.image) ein.
+ 3) Die Firmware wird auf die FRITZ!Box übertragen. Anschließend startet sich
+    die FRITZ!Box neu.
+
+ Auf den Stand vor Testbeginn zurücksetzen
+
+ Um Ihre FRITZ!Box auf den Stand vor dem Beginn des Tests wiederherzustellen,
+ können Sie die aktuelle Firmware erneut installieren.
+ Während des Zurücksetzens gehen die Einstellungen der FRITZ!Box verloren. Die
+ vor Beginn des Tests gesicherten Einstellungen können Sie über den Menüpunkt
+ "System/Einstellungen sichern" wiederherstellen.
+
+
+© AVM GmbH 2004 - 2013. Alle Rechte vorbehalten.
+
+Das vorliegende AVM Firmware-Paket enthält Dateien, die unter verschiedenen
+Lizenzen verbreitet werden, insbesondere unter AVM-proprietärer Lizenz oder
+unter einer Open Source Lizenz (nämlich GNU General Public License,
+GNU Lesser General Public License oder FreeBSD License). Einzelheiten zu
+verschiedenen Lizenzen enthält die Datei "license.txt"
+(ftp://ftp.avm.de/fritz.box/license.txt).
+Der Source Code der als Open Source verbreiteten Dateien kann schriftlich 
+angefordert werden über fritzbox_info@avm.de. 
+
+AVM räumt das nicht ausschließliche Recht ein, dieses AVM Firmware-Paket zu
+nutzen, welches ausschließlich im Object Code Format überlassen wird.  Der
+Lizenznehmer darf von der Software nur eine Vervielfältigung erstellen, die
+ausschließlich für Sicherungszwecke verwendet werden darf (Sicherungskopie).
+AVM behält sich alle Rechte vor, die nicht ausdrücklich eingeräumt werden. Ohne
+vorheriges schriftliches Einverständnis und ausser in den gesetzlich gestatteten
+Fällen darf dieses AVM Firmware-Paket insbesondere weder
+- vervielfältigt, verbreitet oder in sonstiger Weise öffentlich zugänglich
+  gemacht werden, noch
+- bearbeitet, disassembliert, reverse engineered, übersetzt, dekompiliert oder
+  in sonstiger Weise ganz oder teilweise "geöffnet" und in der Folge weder
+  vervielfältigt, verbreitet noch in sonstiger Weise öffentlich zugänglich
+  gemacht werden.
+
+SST 20130228
