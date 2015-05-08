@@ -1,10 +1,7 @@
-# ProjectTracker-web2py
-Project Management application written with python and web2py.
-
 Project Tracker
 ----------------
 A Project Management application for collaborating on projects and to do items.
-Developed with web2py.
+Developed with web2py and python.
 By Kevin Patrick Westropp
 
 -----
